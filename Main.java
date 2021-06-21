@@ -1,12 +1,17 @@
 class Main {
   public static void main(String[] args) {
-    String str = "W.I.N.E = W.I.N.E Is Not an Emulator";
-    System.out.println(str);
-    while(true){
-      str += " : W.I.N.E = W.I.N.E Is Not an Emulator";
-      System.out.println(str);
+    /*Board board = new Board();
+    for (int Ryan = 0; Ryan < 6; Ryan++){
+    for(int i = 0; i < 7; i ++){
+      System.out.println(board);
+      board.dropthechild(i%2 + 1,i);
     }
+    System.out.println(board);
   }
+  }*/
+  GameRunner gameRunner = new GameRunner();
+  gameRunner.start();
+}
 }
 /*
 Girlfriend
