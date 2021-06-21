@@ -19,7 +19,7 @@ public class GUI extends JFrame{
     this.board = board;
     buttons = new JButton[7];
     for (int i = 0; i < buttons.length; i++){
-      ImageIcon imageIcon = new ImageIcon("Connect4Assets/arrow.png"); // load the image to a imageIcon
+      ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("arrow.png")); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
         Image newimg = image.getScaledInstance(55,55,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
       buttons[i] = new JButton(new ImageIcon(newimg));
@@ -53,7 +53,7 @@ public class GUI extends JFrame{
 
     for (int r = 0; r < grid.length; r ++){
       for (int c = 0; c < grid[r].length; c++){
-        ImageIcon imageIcon = new ImageIcon("Connect4Assets/empty.png"); // load the image to a imageIcon
+        ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("empty.png")); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
         Image newimg = image.getScaledInstance(55,55,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         grid[r][c] = new JLabel(new ImageIcon(newimg));
@@ -76,11 +76,11 @@ public class GUI extends JFrame{
   }
 
   public void updateBoard(){
-    String[] conversions = {"Connect4Assets/empty.png","Connect4Assets/red.png","Connect4Assets/yellow.png"};
+    String[] conversions = {"empty.png", "red.png", "yellow.png"};
     int[][] boardBoard = board.getBoard();
     for (int r = 0; r < grid.length; r++){
       for(int c = 0; c < grid[r].length; c++){
-        ImageIcon imageIcon = new ImageIcon(conversions[boardBoard[r][c]]); // load the image to a imageIcon
+        ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource(conversions[boardBoard[r][c]])); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
         Image newimg = image.getScaledInstance(55,55,  java.awt.Image.SCALE_SMOOTH);
         grid[r][c].setIcon(new ImageIcon(newimg));
