@@ -6,6 +6,9 @@ public class Board{
 
 
   public boolean dropthechild(int child, int drop){
+    if (drop < 0 || drop > board.length){
+      return false;
+    }
     for(int i = board.length-1; i >= 0 ; i--){
       if(board[i][drop] == 0){
         board[i][drop] = child;
@@ -17,13 +20,13 @@ public class Board{
 
   private boolean checkCols(){
     boolean jeff = true;
-    for(int r = 0; r < board.length - 4; r++){
+    for(int r = 0; r < board.length - 3; r++){
       for(int c = 0; c < board[r].length; c ++){
         jeff = true;
         int first = board[r][c];
         if (first == 0) continue;
         for (int i = 1; i < 4; i ++){
-          if (board[r][c+i] != first){
+          if (board[r + i][c] != first){
             jeff = false;
             break;
           }
@@ -38,12 +41,12 @@ public class Board{
   private boolean checkRows(){
     boolean jeff = true;
     for (int r = 0; r < board.length; r ++){
-      for ( int c = 0; c < board[r].length - 4; c ++){
+      for ( int c = 0; c < board[r].length - 3; c ++){
         jeff = true;
         int first = board[r][c];
         if (first == 0) continue;
         for (int i = 1; i < 4; i ++){
-          if (board[r+i][c] != first){
+          if (board[r][c+i] != first){
             jeff = false;
             break;
           }
@@ -56,7 +59,7 @@ public class Board{
 
   private boolean checkRightDiags(){
     boolean jeff = true;
-    for (int r = 0; r < board.length - 4; r ++){
+    for (int r = 0; r < board.length - 3; r ++){
       for ( int c = 0; c < board[r].length - 3; c ++){
         jeff = true;
         int first = board[r][c];
@@ -75,7 +78,7 @@ public class Board{
 
   private boolean checkLeftDiags(){
     boolean jeff = true;
-    for (int r = 0; r < board.length - 4; r ++){
+    for (int r = 0; r < board.length - 3; r ++){
       for ( int c = 3; c < board[r].length; c ++){
         jeff = true;
         int first = board[r][c];
@@ -83,6 +86,7 @@ public class Board{
         for (int i = 1; i < 4; i ++){
           if (board[r+i][c - i] != first){
             jeff = false;
+            break;
           }
         }
         if (jeff) return true;
@@ -225,6 +229,10 @@ public class Board{
     }
     return false;
     */
+  }
+
+  public int[][] getBoard(){
+    return board;
   }
 
   public String toString(){
