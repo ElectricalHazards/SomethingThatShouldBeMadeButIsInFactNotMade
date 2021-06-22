@@ -26,7 +26,7 @@ public class GUI extends JFrame implements ActionListener{
 		//add(game, "game");
 		add(game);
 		
-	    setSize(600,600);
+	    setSize(475,475);
 	    setResizable(false);
 	    setVisible(true);
 	    setTitle("Connect 4");
@@ -99,7 +99,9 @@ class GUIGameGrid extends JPanel{
 	      ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("arrow.png")); // load the image to a imageIcon
 	        Image image = imageIcon.getImage(); // transform it 
 	        Image newimg = image.getScaledInstance(55,55,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+	      ImageIcon newImageIcon = new ImageIcon(newimg);
 	      buttons[i] = new JButton(new ImageIcon(newimg));
+	      buttons[i].setPreferredSize(new Dimension(newImageIcon.getIconWidth(),newImageIcon.getIconHeight()));
 	      buttons[i].addActionListener(new ActionListener(){
 	        public void actionPerformed(ActionEvent e){
 	          int index = 0;
