@@ -1,14 +1,15 @@
 package src.TerminalConnect4;
-
 public class Board{
   public int[][] board;
+  private boolean isRunning;
   public Board(){
     board = new int[6][7];
+    isRunning = true;
   }
 
 
   public boolean dropthechild(int child, int drop){
-    if (drop < 0 || drop > board.length){
+    if (drop < 0 || drop > board.length || !isRunning){
       return false;
     }
     for(int i = board.length-1; i >= 0 ; i--){
@@ -101,6 +102,7 @@ public class Board{
 
 
     if (checkCols() || checkRows() || checkRightDiags() || checkLeftDiags()){
+    	isRunning = false;
       return true;
     }
     return false;
@@ -236,9 +238,17 @@ public class Board{
   public int[][] getBoard(){
     return board;
   }
+  
+  public boolean isRunning() {
+	  return isRunning;
+  }
+  
+  public void setIsRunning(boolean jeff) {
+	  isRunning = jeff;
+  }
 
   public String toString(){
-    String[] conversions = {"⏺️","🔴","🟡"};
+    String[] conversions = {"â�ºï¸�","ðŸ”´","ðŸŸ¡"};
     String output = " ";
     for(int c = 0; c < board[0].length;c++){
         output += ""+(c+1);

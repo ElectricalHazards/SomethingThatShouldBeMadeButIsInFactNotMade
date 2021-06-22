@@ -1,7 +1,6 @@
 package src;
-
-import src.TerminalConnect4.GameRunner;
-
+import src.TerminalConnect4.*;
+import src.TwitchBot.*;
 class Main {
   public static void main(String[] args) {
     /*Board board = new Board();
