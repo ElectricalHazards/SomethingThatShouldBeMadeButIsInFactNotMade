@@ -1,0 +1,873 @@
+!SESSION 2021-06-21 14:57:30.643 -----------------------------------------------
+eclipse.buildId=4.19.0.I20210303-1800
+java.version=16.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.jface 2 0 2021-06-21 14:59:09.157
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-06-21 14:59:09.157
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4c41a177,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2faf6e4a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2021-06-21 14:59:24.133
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\joeme'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.ui.ide 4 0 2021-06-21 15:00:03.380
+!MESSAGE Could not import project located at C:\Users\joeme\Documents\GitHub\RyanSokoban
+!STACK 0
+org.eclipse.ui.internal.wizards.datatransfer.CouldNotImportProjectException: Could not import project located at C:\Users\joeme\Documents\GitHub\RyanSokoban
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:565)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.run(SmartImportJob.java:252)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:266)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:252)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.createOrImportProject(SmartImportJob.java:604)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:552)
+	... 2 more
+!SESSION 2021-06-21 15:00:30.528 -----------------------------------------------
+eclipse.buildId=4.19.0.I20210303-1800
+java.version=16.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.jface 2 0 2021-06-21 15:00:49.429
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-06-21 15:00:49.429
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4449a60b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@da5d5e1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2021-06-21 15:00:53.215
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\joeme'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.ui.ide 4 0 2021-06-21 15:01:11.849
+!MESSAGE Could not import project located at C:\Users\joeme\Documents\GitHub\SomethingThatShouldBeMadeButIsInFactNotMade
+!STACK 0
+org.eclipse.ui.internal.wizards.datatransfer.CouldNotImportProjectException: Could not import project located at C:\Users\joeme\Documents\GitHub\SomethingThatShouldBeMadeButIsInFactNotMade
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:565)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.run(SmartImportJob.java:252)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:266)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:252)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.createOrImportProject(SmartImportJob.java:604)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:552)
+	... 2 more
+
+!ENTRY org.eclipse.jdt.core 4 4 2021-06-21 23:52:28.646
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+public class Board{
+  public int[][] board;
+  private boolean isRunning;
+  public Board(){
+    board = new int[6][7];
+    isRunning = true;
+  }
+
+
+  public boolean dropthechild(int child, int drop){
+    if (drop < 0 || drop > board.length || !isRunning){
+      return false;
+    }
+    for(int i = board.length-1; i >= 0 ; i--){
+      if(board[i][drop] == 0){
+        board[i][drop] = child;
+        return true;
+      }
+    }
+    return false;      
+  }
+
+  private boolean checkCols(){
+    boolean jeff = true;
+    for(int r = 0; r < board.length - 3; r++){
+      for(int c = 0; c < board[r].length; c ++){
+        jeff = true;
+        int first = board[r][c];
+        if (first == 0) continue;
+        for (int i = 1; i < 4; i ++){
+          if (board[r + i][c] != first){
+            jeff = false;
+            break;
+          }
+        }
+        if (jeff) return true;
+
+      }
+    }
+    return false;
+  }
+
+  private boolean checkRows(){
+    boolean jeff = true;
+    for (int r = 0; r < board.length; r ++){
+      for ( int c = 0; c < board[r].length - 3; c ++){
+        jeff = true;
+        int first = board[r][c];
+        if (first == 0) continue;
+        for (int i = 1; i < 4; i ++){
+          if (board[r][c+i] != first){
+            jeff = false;
+            break;
+          }
+        }
+        if (jeff) return true;
+      }
+    }
+    return false;
+  }
+
+  private boolean checkRightDiags(){
+    boolean jeff = true;
+    for (int r = 0; r < board.length - 3; r ++){
+      for ( int c = 0; c < board[r].length - 3; c ++){
+        jeff = true;
+        int first = board[r][c];
+        if (first == 0) continue;
+        for (int i = 1; i < 4; i ++){
+          if (board[r+i][c + i] != first){
+            jeff = false;
+            break;
+          }
+        }
+        if (jeff) return true;
+      }
+    }
+    return false;   
+  }
+
+  private boolean checkLeftDiags(){
+    boolean jeff = true;
+    for (int r = 0; r < board.length - 3; r ++){
+      for ( int c = 3; c < board[r].length; c ++){
+        jeff = true;
+        int first = board[r][c];
+        if (first == 0) continue;
+        for (int i = 1; i < 4; i ++){
+          if (board[r+i][c - i] != first){
+            jeff = false;
+            break;
+          }
+        }
+        if (jeff) return true;
+      }
+    }
+    return false;   
+  }
+
+  public boolean theySayChildrenAreTheChickenOfTheOrphanarium(){
+
+
+    if (checkCols() || checkRows() || checkRightDiags() || checkLeftDiags()){
+      return true;
+    }
+    return false;
+
+    /*
+    for (int r = 0; r < board.length; r++){
+      for(int c = 0; c < board[r].length;c++){
+        if(board[r][c]==0){
+          continue;
+        }
+        for(int i = 0; i < 8; i++){
+          switch(i){
+            case 0:
+              //Up
+              try{
+                int x = 0;
+                while(board[r-x][c] == board[r][c]){
+                  x++;
+                }
+                if(x > 4){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 1:
+              //Down
+              try{
+                int x = 0;
+                while(board[r+x][c] == board[r][c]){
+                  x++;
+                }
+                if(x > 4){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 2:
+              //Left
+              try{
+                int x = 0;
+                while(board[r][c-x] == board[r][c]){
+                  x++;
+                }
+                if(x > 4){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 3:
+              //Right
+              try{
+                int x = 0;
+                while(board[r][c+x] == board[r][c]){
+                  x++;
+                }
+                if(x > 4){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 4:
+              //UpLeft
+              try{
+                int x = 0;
+                while(board[r-x][c-x] == board[r][c]){
+                  x++;
+                }
+                if(x > 5){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 5:
+              //UpRight
+              try{
+                int x = 0;
+                while(board[r-x][c+x] == board[r][c]){
+                  x++;
+                }
+                if(x > 5){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 6:
+              //DownLeft
+              try{
+                int x = 0;
+                while(board[r+x][c-x] == board[r][c]){
+                  x++;
+                }
+                if(x > 5){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 7:
+              //DownRight
+              try{
+                int x = 0;
+                while(board[r+x][c+x] == board[r][c]){
+                  x++;
+                }
+                if(x > 5){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+          }
+        }
+      }
+    }
+    return false;
+    */
+  }
+
+  public int[][] getBoard(){
+    return board;
+  }
+  
+  public boolean isRunning()
+
+  public String toString(){
+    String[] conversions = {"â�ºï¸�","ðŸ”´","ðŸŸ¡"};
+    String output = " ";
+    for(int c = 0; c < board[0].length;c++){
+        output += ""+(c+1);
+      if (c != board[0].length - 1){
+        output += " ";
+    }
+    }
+    output += "\n";
+    for (int r = 0; r < board.length; r++){
+      for(int c = 0; c < board[r].length;c++){
+        output += conversions[board[r][c]];
+      if (c != board[r].length - 1){
+        output += " ";
+    }  
+      }
+      if (r != board.length - 1){
+        output += "\n";
+    }
+  }
+  return output;
+  }
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2021-06-21 23:52:28.750
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2021-06-21 23:52:28.751
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2021-06-22 00:39:37.229
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+public class Board{
+  public int[][] board;
+  private boolean isRunning;
+  public Board(){
+    board = new int[6][7];
+    isRunning = true;
+  }
+
+
+  public boolean dropthechild(int child, int drop){
+    if (drop < 0 || drop > board.length || !isRunning){
+      return false;
+    }
+    for(int i = board.length-1; i >= 0 ; i--){
+      if(board[i][drop] == 0){
+        board[i][drop] = child;
+        return true;
+      }
+    }
+    return false;      
+  }
+
+  private boolean checkCols(){
+    boolean jeff = true;
+    for(int r = 0; r < board.length - 3; r++){
+      for(int c = 0; c < board[r].length; c ++){
+        jeff = true;
+        int first = board[r][c];
+        if (first == 0) continue;
+        for (int i = 1; i < 4; i ++){
+          if (board[r + i][c] != first){
+            jeff = false;
+            break;
+          }
+        }
+        if (jeff) return true;
+
+      }
+    }
+    return false;
+  }
+
+  private boolean checkRows(){
+    boolean jeff = true;
+    for (int r = 0; r < board.length; r ++){
+      for ( int c = 0; c < board[r].length - 3; c ++){
+        jeff = true;
+        int first = board[r][c];
+        if (first == 0) continue;
+        for (int i = 1; i < 4; i ++){
+          if (board[r][c+i] != first){
+            jeff = false;
+            break;
+          }
+        }
+        if (jeff) return true;
+      }
+    }
+    return false;
+  }
+
+  private boolean checkRightDiags(){
+    boolean jeff = true;
+    for (int r = 0; r < board.length - 3; r ++){
+      for ( int c = 0; c < board[r].length - 3; c ++){
+        jeff = true;
+        int first = board[r][c];
+        if (first == 0) continue;
+        for (int i = 1; i < 4; i ++){
+          if (board[r+i][c + i] != first){
+            jeff = false;
+            break;
+          }
+        }
+        if (jeff) return true;
+      }
+    }
+    return false;   
+  }
+
+  private boolean checkLeftDiags(){
+    boolean jeff = true;
+    for (int r = 0; r < board.length - 3; r ++){
+      for ( int c = 3; c < board[r].length; c ++){
+        jeff = true;
+        int first = board[r][c];
+        if (first == 0) continue;
+        for (int i = 1; i < 4; i ++){
+          if (board[r+i][c - i] != first){
+            jeff = false;
+            break;
+          }
+        }
+        if (jeff) return true;
+      }
+    }
+    return false;   
+  }
+
+  public boolean theySayChildrenAreTheChickenOfTheOrphanarium(){
+
+
+    if (checkCols() || checkRows() || checkRightDiags() || checkLeftDiags()){
+    	isRunning = false;
+      return true;
+    }
+    return false;
+
+    /*
+    for (int r = 0; r < board.length; r++){
+      for(int c = 0; c < board[r].length;c++){
+        if(board[r][c]==0){
+          continue;
+        }
+        for(int i = 0; i < 8; i++){
+          switch(i){
+            case 0:
+              //Up
+              try{
+                int x = 0;
+                while(board[r-x][c] == board[r][c]){
+                  x++;
+                }
+                if(x > 4){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 1:
+              //Down
+              try{
+                int x = 0;
+                while(board[r+x][c] == board[r][c]){
+                  x++;
+                }
+                if(x > 4){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 2:
+              //Left
+              try{
+                int x = 0;
+                while(board[r][c-x] == board[r][c]){
+                  x++;
+                }
+                if(x > 4){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 3:
+              //Right
+              try{
+                int x = 0;
+                while(board[r][c+x] == board[r][c]){
+                  x++;
+                }
+                if(x > 4){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 4:
+              //UpLeft
+              try{
+                int x = 0;
+                while(board[r-x][c-x] == board[r][c]){
+                  x++;
+                }
+                if(x > 5){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 5:
+              //UpRight
+              try{
+                int x = 0;
+                while(board[r-x][c+x] == board[r][c]){
+                  x++;
+                }
+                if(x > 5){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 6:
+              //DownLeft
+              try{
+                int x = 0;
+                while(board[r+x][c-x] == board[r][c]){
+                  x++;
+                }
+                if(x > 5){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+            case 7:
+              //DownRight
+              try{
+                int x = 0;
+                while(board[r+x][c+x] == board[r][c]){
+                  x++;
+                }
+                if(x > 5){
+                  return true;
+                }
+                continue;
+              }catch(Exception e){
+                continue;
+              }
+          }
+        }
+      }
+    }
+    return false;
+    */
+  }
+
+  public int[][] getBoard(){
+    return board;
+  }
+  
+  public boolean isRunning() {
+	  return isRunning;
+  }
+  
+  public void setIsRunning()
+
+  public String toString(){
+    String[] conversions = {"â�ºï¸�","ðŸ”´","ðŸŸ¡"};
+    String output = " ";
+    for(int c = 0; c < board[0].length;c++){
+        output += ""+(c+1);
+      if (c != board[0].length - 1){
+        output += " ";
+    }
+    }
+    output += "\n";
+    for (int r = 0; r < board.length; r++){
+      for(int c = 0; c < board[r].length;c++){
+        output += conversions[board[r][c]];
+      if (c != board[r].length - 1){
+        output += " ";
+    }  
+      }
+      if (r != board.length - 1){
+        output += "\n";
+    }
+  }
+  return output;
+  }
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2021-06-22 00:39:37.230
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2021-06-22 00:39:37.231
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.egit.core 4 0 2021-06-22 00:43:24.831
+!MESSAGE Pulling 1 repository
+!SUBENTRY 1 org.eclipse.egit.core 4 0 2021-06-22 00:43:24.831
+!MESSAGE Checkout conflict with files: 
+Board.java
+GUI.java
+GameRunner.java
+!STACK 0
+org.eclipse.jgit.api.errors.CheckoutConflictException: Checkout conflict with files: 
+Board.java
+GUI.java
+GameRunner.java
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:401)
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:367)
+	at org.eclipse.egit.core.op.PullOperation$PullJob.run(PullOperation.java:255)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.CheckoutConflictException: Checkout conflict with files: 
+Board.java
+GUI.java
+GameRunner.java
+	at org.eclipse.jgit.dircache.DirCacheCheckout.doCheckout(DirCacheCheckout.java:502)
+	at org.eclipse.jgit.dircache.DirCacheCheckout.checkout(DirCacheCheckout.java:467)
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:271)
+	... 3 more
+
+!ENTRY org.eclipse.egit.core 4 0 2021-06-22 00:43:42.499
+!MESSAGE Pulling 1 repository
+!SUBENTRY 1 org.eclipse.egit.core 4 0 2021-06-22 00:43:42.499
+!MESSAGE Checkout conflict with files: 
+Board.java
+GUI.java
+GameRunner.java
+!STACK 0
+org.eclipse.jgit.api.errors.CheckoutConflictException: Checkout conflict with files: 
+Board.java
+GUI.java
+GameRunner.java
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:401)
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:367)
+	at org.eclipse.egit.core.op.PullOperation$PullJob.run(PullOperation.java:255)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.CheckoutConflictException: Checkout conflict with files: 
+Board.java
+GUI.java
+GameRunner.java
+	at org.eclipse.jgit.dircache.DirCacheCheckout.doCheckout(DirCacheCheckout.java:502)
+	at org.eclipse.jgit.dircache.DirCacheCheckout.checkout(DirCacheCheckout.java:467)
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:271)
+	... 3 more

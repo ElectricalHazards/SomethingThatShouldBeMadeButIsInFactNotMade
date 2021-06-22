@@ -1,0 +1,24 @@
+package swingy;
+import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		JFrame f = new JFrame("Testing JPanels");
+		
+		JPanel p = new JPanel(new GridLayout(3,3));
+		for(int i = 0; i < 9; i++) {
+			p.add(new JLabel("Hello World"));
+		}
+		
+		
+		f.add(p);
+		
+		f.setSize(400,400);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+
+}

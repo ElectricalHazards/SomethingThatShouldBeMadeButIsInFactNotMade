@@ -1,0 +1,27 @@
+package swingy;
+import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		JFrame f = new JFrame("Testing JPanels");
+		JPanel p = new JPanel(new GridLayout(3,3));
+		JPanel[] psPanels = new JPanel[9];
+		for(int i = 0; i < psPanels.length; i++) {
+			psPanels[i] = new JPanel();
+			psPanels[i].setBackground((i % 2 == 0 ? Color.white : Color.blue));
+			p.add(new JPanel());
+			
+		}
+		
+		
+		f.add(p);
+		
+		f.setSize(400,400);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+
+}
