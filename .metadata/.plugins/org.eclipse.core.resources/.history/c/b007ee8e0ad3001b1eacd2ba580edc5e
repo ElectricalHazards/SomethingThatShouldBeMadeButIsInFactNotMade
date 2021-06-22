@@ -8,10 +8,13 @@ public class GameRunner extends Thread{
   }
 
   public void run(){
-    GUI gui = new GUI(board);
+    GUI gui = new GUI();
+  }
+}
   //  Scanner scanner = new Scanner(System.in);
   //  int rnd = new Random().nextInt(2);
   //  boolean player = (rnd==1?false:true);
+    /*
     while(!hasWon()){}
     //System.out.println(board);
     gui.updateBoard();
@@ -22,3 +25,4 @@ public class GameRunner extends Thread{
     return board.theySayChildrenAreTheChickenOfTheOrphanarium();
   }
 }
+    */
