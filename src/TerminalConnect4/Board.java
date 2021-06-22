@@ -1,3 +1,5 @@
+package src.TerminalConnect4;
+
 public class Board{
   public int[][] board;
   public Board(){

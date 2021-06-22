@@ -1,4 +1,6 @@
-import java.util.*;
+package src.TerminalConnect4;
+import src.*;
+
 import java.lang.*;
 public class GameRunner extends Thread{
   public Board board;
@@ -12,7 +14,9 @@ public class GameRunner extends Thread{
   //  Scanner scanner = new Scanner(System.in);
   //  int rnd = new Random().nextInt(2);
   //  boolean player = (rnd==1?false:true);
-    while(!hasWon()){}
+    while(!hasWon()){
+
+    }
     //System.out.println(board);
     gui.updateBoard();
     System.out.println("Someonewon, congration, someonedoneit");

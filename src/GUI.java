@@ -1,3 +1,7 @@
+package src;
+
+import src.TerminalConnect4.Board;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

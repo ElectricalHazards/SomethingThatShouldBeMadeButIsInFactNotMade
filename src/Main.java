@@ -1,3 +1,7 @@
+package src;
+
+import src.TerminalConnect4.GameRunner;
+
 class Main {
   public static void main(String[] args) {
     /*Board board = new Board();
