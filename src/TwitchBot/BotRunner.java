@@ -7,7 +7,7 @@ import org.jibble.pircbot.NickAlreadyInUseException;
 
 public class BotRunner extends Thread {
 
-    public static final String OAUTH = "oauth:mg6u2wkuylp5j1yagw9yo5jkugvseu";
+    public static final String OAUTH = "";
     public static final String ADDRESS = "irc.twitch.tv.";
     private static final int PORT = 6667;
     public static final String USER = "rpg7777";
