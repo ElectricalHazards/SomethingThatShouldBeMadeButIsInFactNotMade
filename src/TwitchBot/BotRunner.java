@@ -3,6 +3,8 @@ import java.io.IOException;
 
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
+import src.JsonDeserialization.JsonManager;
+import src.JsonDeserialization.SettingsSettings;
 
 
 public class BotRunner extends Thread {
@@ -11,10 +13,19 @@ public class BotRunner extends Thread {
     public static final String ADDRESS = "irc.twitch.tv.";
     private static final int PORT = 6667;
     public static String USER = "";
+    private static int CollectionTime;
+    private static boolean ChatWait;
 
-    public BotRunner(String user, String oauth){
-        this.USER = user;
-        this.OAUTH = oauth;
+    public BotRunner(){
+        try {
+            SettingsSettings settings = new JsonManager().readJSON("settings.json");
+            this.USER = settings.Username;
+            this.OAUTH = settings.OAuth;
+            this.CollectionTime = Integer.parseInt(settings.WaitTime);
+            if(settings.ChatWait) {
+                this.ChatWait = settings.ChatWait;
+            }
+        }catch (Exception e){e.printStackTrace();}
     }
 
     public void run() {

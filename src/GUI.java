@@ -90,6 +90,14 @@ class SettingsMenu extends JPanel{
 	//Length of time collecting answers button
 	String urlString;
 
+	public Integer parseIntOrNull(String value) {
+		try {
+			return Integer.parseInt(value);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
+
 	SettingsMenu(){
 		chNameL = new JLabel("Enter your channel name:");
 		chName = new JPasswordField(25);
@@ -103,6 +111,7 @@ class SettingsMenu extends JPanel{
 		waitToCollect = new JCheckBox("Start Timer After First Valid Chat Response Instead Of After Streamer's Move");
 		timeL = new JLabel("Time spent waiting on chat to respond");
 		timeCollecting = new JTextField(15);
+		timeCollecting.setText("0");
 		try {
 			SettingsSettings settings = new JsonManager().readJSON("settings.json");
 			chName.setText(settings.Username);
@@ -117,6 +126,18 @@ class SettingsMenu extends JPanel{
 				userClicked = true;
 			}
 		}catch (Exception e){e.printStackTrace();}
+
+
+		timeCollecting.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//Have run on text change
+				if(parseIntOrNull(timeCollecting.getText())==null){
+					timeCollecting.setText("0");
+				}
+				//Have run on text change ^
+			}
+		});
+
 
 		chNameCB.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -164,7 +185,7 @@ class SettingsMenu extends JPanel{
 		});
 		g.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				BotRunner botRunner = new BotRunner(new String(chName.getPassword()),new String(oauthTok.getPassword()));
+				BotRunner botRunner = new BotRunner();
 				botRunner.run();
 			}
 		});
