@@ -28,8 +28,10 @@ public class GUI extends JFrame implements ActionListener{
 		//add(game, "game");
 		add(game);
 		
-	    setSize(475,475);
-	    setResizable(false);
+	    //setSize(475,475);
+		setMinimumSize(new Dimension(400,400));
+		setSize(600,600);
+	    //setResizable(false);
 	    setVisible(true);
 	    setTitle("Connect 4");
 	    setIconImage(new ImageIcon("Connect4Assets/icon.png").getImage());
@@ -51,7 +53,7 @@ class GUIGame extends JPanel{
 	
 	
 	GUIGame(){
-		//super(null);
+		super(new BorderLayout());
 		
 		
 		this.board = new Board();
