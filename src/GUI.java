@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import src.TerminalConnect4.*;
+import src.TwitchBot.BotRunner;
+
 public class GUI extends JFrame{
 	private JPanel menu, container;
 	private GUIGame game; 
@@ -73,7 +75,7 @@ public class GUI extends JFrame{
 class SettingsMenu extends JPanel{
 	private JLabel chNameL, oauthTokL;
 	private JPasswordField chName, oauthTok;
-	private JButton b;
+	private JButton b, g, w;
 	private JCheckBox chNameCB, oauthTokCB;
 	String urlString;
 
@@ -85,6 +87,8 @@ class SettingsMenu extends JPanel{
 		oauthTok = new JPasswordField(30);
 		oauthTokCB = new JCheckBox("Show Text");
 		b = new JButton("Get Oauth Token");
+		g = new JButton("ConnectBot(DEBUG)");
+		w = new JButton("SavetoJSON(DEBUG)");
 
 
 		chNameCB.addItemListener(new ItemListener(){
@@ -118,6 +122,18 @@ class SettingsMenu extends JPanel{
 				}
 			}
 		});
+		g.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				BotRunner botRunner = new BotRunner(new String(chName.getPassword()),new String(oauthTok.getPassword()));
+				botRunner.run();
+			}
+		});
+		w.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				BotRunner botRunner = new BotRunner(new String(chName.getPassword()),new String(oauthTok.getPassword()));
+				botRunner.run();
+			}
+		});
 
 		add(chNameL);
 		add(chName);
@@ -126,6 +142,8 @@ class SettingsMenu extends JPanel{
 		add(oauthTok);
 		add(oauthTokCB);
 		add(b);
+		add(g);
+		add(w);
 
 
 
