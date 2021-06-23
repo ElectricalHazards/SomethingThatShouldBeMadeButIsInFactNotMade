@@ -220,7 +220,10 @@ class GUIGame extends JPanel{
 	private GUIGameDetails d;
 	private GUIGameGrid g;
 	private Board board;
-	
+	private static JDialog dialog;
+	private static JLabel dialogL;
+	private static JButton toMenu, again;
+
 	
 	GUIGame(){
 		super(new BorderLayout());
@@ -229,12 +232,54 @@ class GUIGame extends JPanel{
 		this.board = new Board();
 		d = new GUIGameDetails();
 		g = new GUIGameGrid(board);
+
+		dialog = new JDialog((JFrame) SwingUtilities.getWindowAncestor(this), "Game Over");
+		dialogL = new JLabel();
+		dialogL.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+		toMenu = new JButton("Exit To Main Menu");
+		toMenu.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				dialog.setVisible(false);
+				GUI.backToMenu();
+			}
+		});
+		again = new JButton("New Game");
+
+		dialog.add(dialogL);
+		dialog.add(toMenu);
+		dialog.add(again);
+
+
+		dialog.addWindowListener(new WindowAdapter(){
+			@Override
+			public void windowClosing(WindowEvent e){
+				dialog.setVisible(false);
+				GUI.backToMenu();				
+			}
+		});
+		dialog.setLayout(new GridLayout(7,1));
+		dialog.setSize(300,300);
+
 		
 		add(d, BorderLayout.NORTH);
 		add(g, BorderLayout.CENTER);
 		
 
 		
+	}
+
+	public static void gameOver(boolean isRunning, boolean turn, Board board){
+		if(board.isDraw){
+			dialogL.setText("Draw!");
+			return;
+		}
+		if (!isRunning) {
+			dialogL.setText((!turn ? "Red" : "Yellow") + " Won!");
+		}
+		else {
+			dialogL.setText((turn ? "Red" : "Yellow") + "'s Turn" );
+		}
+		dialog.setVisible(true);
 	}
 	
 }
@@ -250,10 +295,12 @@ class GUIGameDetails extends JPanel{
 	public static void updateLabel(boolean isRunning, boolean turn, Board board) {
 		if(board.isDraw){
 			l.setText("Draw!");
+			GUIGame.gameOver(isRunning, turn, board);
 			return;
 		}
 		if (!isRunning) {
 			l.setText((!turn ? "Red" : "Yellow") + " Won!");
+			GUIGame.gameOver(isRunning, turn, board);
 		}
 		else {
 			l.setText((turn ? "Red" : "Yellow") + "'s Turn" );
