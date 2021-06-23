@@ -163,7 +163,11 @@ class GUIGameDetails extends JPanel{
 		add(l);
 	}
 	
-	public static void updateLabel(boolean isRunning, boolean turn) {
+	public static void updateLabel(boolean isRunning, boolean turn, Board board) {
+		if(board.isDraw){
+			l.setText("Draw!");
+			return;
+		}
 		if (!isRunning) {
 			l.setText((!turn ? "Red" : "Yellow") + " Won!");
 		}
@@ -206,7 +210,7 @@ class GUIGameGrid extends JPanel{
 					board.theySayChildrenAreTheChickenOfTheOrphanarium();
 					player = !player;
 					updateBoard();
-					GUIGameDetails.updateLabel(board.isRunning(), player);
+					GUIGameDetails.updateLabel(board.isRunning(), player,board);
 				}
 	          }
 
