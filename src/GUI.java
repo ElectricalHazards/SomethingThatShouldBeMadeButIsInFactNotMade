@@ -8,6 +8,7 @@ public class GUI extends JFrame implements ActionListener{
 	private GUIGame game; 
 	private CardLayout card = new CardLayout();
 	private JButton b;
+	
 	public GUI() {
 		//setLayout(card);
 		
@@ -104,8 +105,8 @@ class GUIGameGrid extends JPanel{
 	        Image image = imageIcon.getImage(); // transform it 
 	        Image newimg = image.getScaledInstance(55,55,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 	      ImageIcon newImageIcon = new ImageIcon(newimg);
-	      buttons[i] = new JButton(new ImageIcon(newimg));
-	      buttons[i].setPreferredSize(new Dimension(newImageIcon.getIconWidth(),newImageIcon.getIconHeight()));
+	      buttons[i] = new JButton(new StretchIcon(newimg));
+	      //buttons[i].setPreferredSize(new Dimension(newImageIcon.getIconWidth(),newImageIcon.getIconHeight()));
 	      buttons[i].addActionListener(new ActionListener(){
 	        public void actionPerformed(ActionEvent e){
 	          int index = 0;
@@ -141,7 +142,7 @@ class GUIGameGrid extends JPanel{
 	        ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("empty.png")); // load the image to a imageIcon
 	        Image image = imageIcon.getImage(); // transform it 
 	        Image newimg = image.getScaledInstance(55,55,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-	        grid[r][c] = new JLabel(new ImageIcon(newimg));
+	        grid[r][c] = new JLabel(new StretchIcon(newimg));
 	        add(grid[r][c]);
 	      }
 	    }
@@ -165,7 +166,7 @@ class GUIGameGrid extends JPanel{
 	        ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource(conversions[boardBoard[r][c]])); // load the image to a imageIcon
 	        Image image = imageIcon.getImage(); // transform it 
 	        Image newimg = image.getScaledInstance(55,55,  java.awt.Image.SCALE_SMOOTH);
-	        grid[r][c].setIcon(new ImageIcon(newimg));
+	        grid[r][c].setIcon(new StretchIcon(newimg));
 	      }
 	    }
 	  }
