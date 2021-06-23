@@ -3,33 +3,42 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import src.TerminalConnect4.*;
-public class GUI extends JFrame implements ActionListener{
-	private JPanel menu;
+public class GUI extends JFrame{
+	private JPanel menu, container;
 	private GUIGame game; 
-	private CardLayout card = new CardLayout();
+	private CardLayout cards = new CardLayout();
 	private JButton b;
+	private JLabel menuLabel;
 	
 	public GUI() {
-		//setLayout(card);
+
+		container = new JPanel();
+		container.setLayout(cards);
 		
-		game = new GUIGame();
-		/*
 		menu = new JPanel();
 		menu.setLayout(new BoxLayout(menu,BoxLayout.Y_AXIS));
-		
-		menu.add(new JLabel("Welcome To Connect 4"));
+		menuLabel = new JLabel("Welcome To Connect 4");
+		menu.add(menuLabel);
 		b = new JButton("Start Game");
-		b.addActionListener(this);
 		menu.add(b);
-		
-		
-		
-		add(menu, "menu");
-		*/
-		//add(game, "game");
-		add(game);
-		
-	    //setSize(475,475);
+		b.setAlignmentX(Component.CENTER_ALIGNMENT);
+		b.setAlignmentY(Component.CENTER_ALIGNMENT);
+		menuLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		menuLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+		container.add(menu, "menu");
+		game = new GUIGame();
+		container.add(game, "game");
+		cards.show(container,"menu");
+
+		b.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cards.show(container, "game");
+			}
+		});
+
+		add(container);
+
+		pack();
 		setMinimumSize(new Dimension(400,400));
 		setSize(600,600);
 	    //setResizable(false);
@@ -39,11 +48,6 @@ public class GUI extends JFrame implements ActionListener{
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-	
-	public void actionPerformed(ActionEvent e) {
-		card.show(this,"game");
-	}
-	
 	
 }
 
