@@ -6,9 +6,10 @@ import src.TerminalConnect4.*;
 import src.TwitchBot.BotRunner;
 
 public class GUI extends JFrame{
-	private JPanel menu, container;
+	private JPanel menu;
+	private static JPanel container;
 	private GUIGame game; 
-	private CardLayout cards = new CardLayout();
+	private static CardLayout cards = new CardLayout();
 	private JButton goToGame,goToTwitchGame,settings;
 	private JLabel menuLabel;
 	private SettingsMenu settingsMenu;
@@ -69,13 +70,17 @@ public class GUI extends JFrame{
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
+
+	public static void backToMenu(){
+		cards.show(container, "menu");
+	}
 	
 }
 
 class SettingsMenu extends JPanel{
 	private JLabel chNameL, oauthTokL;
 	private JPasswordField chName, oauthTok;
-	private JButton b, g, w;
+	private JButton b, g, w, back;
 	private JCheckBox chNameCB, oauthTokCB;
 	String urlString;
 
@@ -89,7 +94,7 @@ class SettingsMenu extends JPanel{
 		b = new JButton("Get Oauth Token");
 		g = new JButton("ConnectBot(DEBUG)");
 		w = new JButton("SavetoJSON(DEBUG)");
-
+		back = new JButton("Back To Menu");
 
 		chNameCB.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -134,6 +139,11 @@ class SettingsMenu extends JPanel{
 				botRunner.run();
 			}
 		});
+		back.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				GUI.backToMenu();
+			}
+		});
 
 		add(chNameL);
 		add(chName);
@@ -144,7 +154,7 @@ class SettingsMenu extends JPanel{
 		add(b);
 		add(g);
 		add(w);
-
+		add(back);
 
 
 	}
