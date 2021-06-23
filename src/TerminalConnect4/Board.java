@@ -2,9 +2,11 @@ package src.TerminalConnect4;
 public class Board{
   public int[][] board;
   private boolean isRunning;
+  public boolean isDraw;
   public Board(){
     board = new int[6][7];
     isRunning = true;
+    isDraw = false;
   }
 
 
@@ -102,8 +104,20 @@ public class Board{
 
 
     if (checkCols() || checkRows() || checkRightDiags() || checkLeftDiags()){
+
     	isRunning = false;
       return true;
+    }
+    boolean flag = false;
+    for(int[] i : board){
+      for(int a : i){
+        if(a==0){
+          flag = true;
+        }
+      }
+    }
+    if(!flag){
+      isDraw = true;
     }
     return false;
 
