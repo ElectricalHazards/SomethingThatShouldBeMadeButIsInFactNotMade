@@ -202,11 +202,12 @@ class GUIGameGrid extends JPanel{
 	            }
 	          }
 	          if(board.isRunning()){
-	            board.dropthechild((player?1:2),index);
-	            board.theySayChildrenAreTheChickenOfTheOrphanarium();
-	            player = !player;
-	            updateBoard();
-	            GUIGameDetails.updateLabel(board.isRunning(), player);
+	            if(board.dropthechild((player?1:2),index)){
+					board.theySayChildrenAreTheChickenOfTheOrphanarium();
+					player = !player;
+					updateBoard();
+					GUIGameDetails.updateLabel(board.isRunning(), player);
+				}
 	          }
 
 	        }

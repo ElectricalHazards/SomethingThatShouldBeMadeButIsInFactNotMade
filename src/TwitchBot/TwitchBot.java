@@ -62,16 +62,15 @@ public class TwitchBot extends PircBot {
 
     @Override
     protected void onMessage(String channel, String sender, String login, String hostname, String message) {
-        System.out.println(sender+" "+message+" ");
         if(isCollectingMessages){
             if(isNumeric(message.toLowerCase(Locale.ROOT))){
                 int vote = Integer.parseInt(message.toLowerCase(Locale.ROOT));
-                boolean flag = false;
-                if(CollectedVotes.containsKey(vote)){
-                        CollectedVotes.put(vote, CollectedVotes.get(vote)+1);
-                }
-                else{
-                    CollectedVotes.put(vote, 1);
+                if(vote<=7&&vote>=1){
+                    if (CollectedVotes.containsKey(vote)) {
+                        CollectedVotes.put(vote, CollectedVotes.get(vote) + 1);
+                    } else {
+                        CollectedVotes.put(vote, 1);
+                    }
                 }
             }
             else{
