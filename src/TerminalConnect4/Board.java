@@ -104,19 +104,20 @@ public class Board{
 
 
     if (checkCols() || checkRows() || checkRightDiags() || checkLeftDiags()){
-      boolean flag = false;
-      for(int[] i : board){
-        for(int a : i){
-          if(a==0){
-            flag = true;
-          }
-        }
-      }
-      if(!flag){
-        isDraw = true;
-      }
+
     	isRunning = false;
       return true;
+    }
+    boolean flag = false;
+    for(int[] i : board){
+      for(int a : i){
+        if(a==0){
+          flag = true;
+        }
+      }
+    }
+    if(!flag){
+      isDraw = true;
     }
     return false;
 
