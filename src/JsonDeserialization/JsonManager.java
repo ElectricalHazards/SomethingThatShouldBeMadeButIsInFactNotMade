@@ -11,20 +11,20 @@ import com.google.gson.GsonBuilder;
 
 public class JsonManager {
 
-    public static void main(String[] args) {
-        JsonManager manager = new JsonManager();
-        try {
-            SettingsSettings settings = new SettingsSettings("Pog", "ers", false);
-            manager.writeJSON(settings,"student.json");
-            SettingsSettings settings2 = manager.readJSON("student.json");
-            System.out.println(settings2.OAuth);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    //public static void main(String[] args) {
+    //    JsonManager manager = new JsonManager();
+    //    try {
+    //        SettingsSettings settings = new SettingsSettings("Pog", "ers", false);
+    //        manager.writeJSON(settings,"student.json");
+    //        SettingsSettings settings2 = manager.readJSON("student.json");
+    //        System.out.println(settings2.OAuth);
+    //    } catch (Exception e) {
+    //        e.printStackTrace();
+    //    }
+    //}
 
 
-    private void writeJSON(SettingsSettings settings, String file) throws IOException {
+    public void writeJSON(SettingsSettings settings, String file) throws IOException {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         FileWriter writer = new FileWriter(getSettingsPath()+file);
@@ -33,7 +33,7 @@ public class JsonManager {
         writer.close();
     }
 
-    private SettingsSettings readJSON(String file) throws FileNotFoundException {
+    public SettingsSettings readJSON(String file) throws FileNotFoundException {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         BufferedReader bufferedReader = new BufferedReader(
@@ -42,14 +42,17 @@ public class JsonManager {
         SettingsSettings student = gson.fromJson(bufferedReader, SettingsSettings.class);
         return student;
     }
-    private String getSettingsPath() {
+    public String getSettingsPath() {
         try {
             URI resourcePathFile = this.getClass().getClassLoader().getResource("RESOURCE_PATH").toURI();
             String resourcePath = resourcePathFile.toString().substring(6);
             URI rootURI = new File("").toURI();
             URI resourceURI = new File(resourcePath).toURI();
             URI relativeResourceURI = rootURI.relativize(resourceURI);
-            return relativeResourceURI.getPath().substring(relativeResourceURI.getPath().indexOf("C:"),relativeResourceURI.getPath().indexOf("SomethingThatShouldBeMadeButIsInFactNotMade.ja"));
+           String jar = (relativeResourceURI.getPath().substring(relativeResourceURI.getPath().indexOf("C:"),relativeResourceURI.getPath().indexOf(".jar")));
+           String last = jar.substring(0,jar.lastIndexOf("/")+1);
+           System.out.println(last);
+            return last;
         } catch (Exception e) {
             return null;
         }

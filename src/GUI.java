@@ -2,6 +2,8 @@ package src;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import src.JsonDeserialization.*;
 import src.TerminalConnect4.*;
 import src.TwitchBot.BotRunner;
 
@@ -78,10 +80,14 @@ public class GUI extends JFrame{
 }
 
 class SettingsMenu extends JPanel{
-	private JLabel chNameL, oauthTokL;
+	private JLabel chNameL, oauthTokL, timeL;
+	private JTextField timeCollecting;
 	private JPasswordField chName, oauthTok;
-	private JButton b, g, w, back;
-	private JCheckBox chNameCB, oauthTokCB;
+	private JButton b, g, back;
+	private JCheckBox chNameCB, oauthTokCB, waitToCollect;
+	private boolean userClicked, waitClicked;
+	//Wait untill valid answer is sent to start collecting answers button
+	//Length of time collecting answers button
 	String urlString;
 
 	SettingsMenu(){
@@ -93,15 +99,33 @@ class SettingsMenu extends JPanel{
 		oauthTokCB = new JCheckBox("Show Text");
 		b = new JButton("Get Oauth Token");
 		g = new JButton("ConnectBot(DEBUG)");
-		w = new JButton("SavetoJSON(DEBUG)");
 		back = new JButton("Back To Menu");
+		waitToCollect = new JCheckBox("Start Timer After First Valid Chat Response Instead Of After Streamer's Move");
+		timeL = new JLabel("Time spent waiting on chat to respond");
+		timeCollecting = new JTextField(15);
+		try {
+			SettingsSettings settings = new JsonManager().readJSON("settings.json");
+			chName.setText(settings.Username);
+			oauthTok.setText(settings.OAuth);
+			timeCollecting.setText(settings.WaitTime);
+			if(settings.ChatWait){
+				waitToCollect.doClick();
+				waitClicked = true;
+			}
+			if(settings.HideUsername){
+				chNameCB.doClick();
+				userClicked = true;
+			}
+		}catch (Exception e){e.printStackTrace();}
 
 		chNameCB.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
 				if (e.getStateChange()==1){
+					userClicked = true;
 					chName.setEchoChar((char) 0);
 				}
 				else{
+					userClicked = false;
 					chName.setEchoChar('*');
 				}
 			}
@@ -113,6 +137,17 @@ class SettingsMenu extends JPanel{
 				}
 				else{
 					oauthTok.setEchoChar('*');
+				}
+			}
+		});
+		waitToCollect.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange()==1){
+					waitClicked = true;
+				}
+				else{
+					waitClicked = false;
 				}
 			}
 		});
@@ -133,14 +168,12 @@ class SettingsMenu extends JPanel{
 				botRunner.run();
 			}
 		});
-		w.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				BotRunner botRunner = new BotRunner(new String(chName.getPassword()),new String(oauthTok.getPassword()));
-				botRunner.run();
-			}
-		});
 		back.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				JsonManager jsonManager = new JsonManager();
+				try {
+					jsonManager.writeJSON(new SettingsSettings(new String(chName.getPassword()), userClicked, new String(oauthTok.getPassword()), timeCollecting.getText(), waitClicked), "settings.json");
+				}catch (Exception j){j.printStackTrace();}
 				GUI.backToMenu();
 			}
 		});
@@ -153,8 +186,10 @@ class SettingsMenu extends JPanel{
 		add(oauthTokCB);
 		add(b);
 		add(g);
-		add(w);
 		add(back);
+		add(timeL);
+		add(timeCollecting);
+		add(waitToCollect);
 
 
 	}

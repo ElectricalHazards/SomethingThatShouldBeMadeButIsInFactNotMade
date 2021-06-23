@@ -12,8 +12,9 @@ class Main {
     System.out.println(board);
   }
   }*/
-  GameRunner gameRunner = new GameRunner();
-  gameRunner.start();
+
+    GameRunner gameRunner = new GameRunner();
+    gameRunner.start();
 }
 }
 /*
