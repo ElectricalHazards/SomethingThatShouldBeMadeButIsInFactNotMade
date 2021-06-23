@@ -7,8 +7,9 @@ public class GUI extends JFrame{
 	private JPanel menu, container;
 	private GUIGame game; 
 	private CardLayout cards = new CardLayout();
-	private JButton b;
+	private JButton goToGame,goToTwitchGame,settings;
 	private JLabel menuLabel;
+	private SettingsMenu settingsMenu;
 	
 	public GUI() {
 
@@ -19,22 +20,40 @@ public class GUI extends JFrame{
 		menu.setLayout(new BoxLayout(menu,BoxLayout.Y_AXIS));
 		menuLabel = new JLabel("Welcome To Connect 4");
 		menu.add(menuLabel);
-		b = new JButton("Start Game");
-		menu.add(b);
-		b.setAlignmentX(Component.CENTER_ALIGNMENT);
-		b.setAlignmentY(Component.CENTER_ALIGNMENT);
+		goToGame = new JButton("Play Connect 4");
+		menu.add(goToGame);
+		goToTwitchGame = new JButton("Play Connect 4 With Twitch Bot");
+		menu.add(goToTwitchGame);
+		settings = new JButton("Settings");
+		menu.add(settings);
+
+
 		menuLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		menuLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+		goToGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+		goToGame.setAlignmentY(Component.CENTER_ALIGNMENT);
+		goToTwitchGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+		goToTwitchGame.setAlignmentY(Component.CENTER_ALIGNMENT);
+		settings.setAlignmentX(Component.CENTER_ALIGNMENT);
+		settings.setAlignmentY(Component.CENTER_ALIGNMENT);
+
 		container.add(menu, "menu");
 		game = new GUIGame();
 		container.add(game, "game");
+		settingsMenu = new SettingsMenu();
+		container.add(settingsMenu,"settings");
 		cards.show(container,"menu");
 
-		b.addActionListener(new ActionListener(){
+		goToGame.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cards.show(container, "game");
 			}
 		});
+		settings.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cards.show(container, "settings");
+			}
+		});		
 
 		add(container);
 
@@ -49,6 +68,68 @@ public class GUI extends JFrame{
 
 	}
 	
+}
+
+class SettingsMenu extends JPanel{
+	private JLabel chNameL, oauthTokL;
+	private JPasswordField chName, oauthTok;
+	private JButton b;
+	private JCheckBox chNameCB, oauthTokCB;
+	String urlString;
+
+	SettingsMenu(){
+		chNameL = new JLabel("Enter your channel name:");
+		chName = new JPasswordField(25);
+		chNameCB = new JCheckBox("Show Text");
+		oauthTokL = new JLabel("Enter your OAuth Token");
+		oauthTok = new JPasswordField(30);
+		oauthTokCB = new JCheckBox("Show Text");
+		b = new JButton("Get Oauth Token");
+
+
+		chNameCB.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				if (e.getStateChange()==1){
+					chName.setEchoChar((char) 0);
+				}
+				else{
+					chName.setEchoChar('*');
+				}
+			}
+		});
+		oauthTokCB.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				if (e.getStateChange()==1){
+					oauthTok.setEchoChar((char) 0);
+				}
+				else{
+					oauthTok.setEchoChar('*');
+				}
+			}
+		});
+
+		urlString = "https://twitchapps.com/tmi/";
+		b.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				try {
+					Desktop.getDesktop().browse(java.net.URI.create(urlString));
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
+
+		add(chNameL);
+		add(chName);
+		add(chNameCB);
+		add(oauthTokL);
+		add(oauthTok);
+		add(oauthTokCB);
+		add(b);
+
+
+
+	}
 }
 
 class GUIGame extends JPanel{
