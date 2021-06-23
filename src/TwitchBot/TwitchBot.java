@@ -76,15 +76,16 @@ public class TwitchBot extends PircBot {
             }
             else{
                 if(message.equalsIgnoreCase("s")){
-                    sendMessage(channel, "Winner = "+stopCollectingMessages());
+                    int x = stopCollectingMessages();
+                    int y = stopCollectingMessages(true);
+                    sendMessage(channel, x+" wins with "+y+" votes.");
                 }
             }
         }
         else{
             if(message.equalsIgnoreCase("c")){
-                System.out.println("HIII");
                 startCollectingMessages();
-                sendMessage(channel,"Now collecting messages");
+                sendMessage(channel,"Voting is now open!");
             }
         }
     }
@@ -103,6 +104,16 @@ public class TwitchBot extends PircBot {
             }
         }
         return max;
+    }
+    public int stopCollectingMessages(boolean isSpecial){
+        isCollectingMessages = false;
+        int max = -1;
+        for(int i = 0; i < CollectedVotes.keySet().size(); i++){
+            if(CollectedVotes.keySet().stream().toList().get(i)>max){
+                max = i;
+            }
+        }
+        return CollectedVotes.values().stream().toList().get(max - 1);
     }
     public static boolean isNumeric(String str) {
         return str != null && str.matches("[-+]?\\d*\\.?\\d+");
