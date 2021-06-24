@@ -42,4 +42,9 @@ public class BotRunner extends Thread {
             bot.sendMessage("#" + USER, "Twitch plays Connect 4 is now active");
 
     }
+
+
+    public void empty(){
+        //Use this function
+    }
 }

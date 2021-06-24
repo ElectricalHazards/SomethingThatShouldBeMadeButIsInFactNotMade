@@ -10,12 +10,12 @@ import src.TwitchBot.BotRunner;
 public class GUI extends JFrame{
 	private JPanel menu;
 	private static JPanel container;
-	private GUIGame game; 
+	private GUIGame game, twitchGame;
 	private static CardLayout cards = new CardLayout();
 	private JButton goToGame,goToTwitchGame,settings;
 	private JLabel menuLabel;
 	private SettingsMenu settingsMenu;
-	
+
 	public GUI() {
 
 		container = new JPanel();
@@ -45,6 +45,8 @@ public class GUI extends JFrame{
 		container.add(menu, "menu");
 		game = new GUIGame();
 		container.add(game, "game");
+		twitchGame = new GUIGame(true);
+		container.add(twitchGame,"twitchGame");
 		settingsMenu = new SettingsMenu();
 		container.add(settingsMenu,"settings");
 		cards.show(container,"menu");
@@ -52,6 +54,12 @@ public class GUI extends JFrame{
 		goToGame.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cards.show(container, "game");
+			}
+		});
+		goToTwitchGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTitle("Connect 4 For Twitch");
+				cards.show(container,"twitchGame");
 			}
 		});
 		settings.addActionListener(new ActionListener(){
@@ -221,15 +229,18 @@ class GUIGame extends JPanel{
 	private GUIGameDetails d;
 	private GUIGameGrid g;
 	private Board board;
-	private static JDialog dialog;
-	private static JLabel dialogL;
-	private static JButton toMenu, again;
+	private JDialog dialog;
+	private JLabel dialogL;
+	private JButton toMenu, again;
+	private boolean isTwitchGame;
 
-	
 	GUIGame(){
+		this(false);
+	}
+	GUIGame(boolean isTwitchGame){
 		super(new BorderLayout());
-		
-		
+
+		this.isTwitchGame = isTwitchGame;
 		this.board = new Board();
 		d = new GUIGameDetails();
 		g = new GUIGameGrid(board);
@@ -273,12 +284,12 @@ class GUIGame extends JPanel{
 		
 		add(d, BorderLayout.NORTH);
 		add(g, BorderLayout.CENTER);
-		
+
 
 		
 	}
 
-	public static void gameOver(boolean isRunning, boolean turn, Board board){
+	public void gameOver(boolean isRunning, boolean turn, Board board){
 		if(board.isDraw){
 			dialogL.setText("Draw!");
 		}
@@ -290,26 +301,30 @@ class GUIGame extends JPanel{
 		}
 		dialog.setVisible(true);
 	}
+
+	public void updateLabel(boolean isRunning, boolean turn, Board board) {
+		d.updateLabel(isRunning, turn, board);
+	}
 	
 }
 
 class GUIGameDetails extends JPanel{
-	private static JLabel l;
+	private JLabel l;
 	
 	GUIGameDetails(){
 		l = new JLabel("Yellow's Turn");
 		add(l);
 	}
 	
-	public static void updateLabel(boolean isRunning, boolean turn, Board board) {
+	public void updateLabel(boolean isRunning, boolean turn, Board board) {
 		if(board.isDraw){
 			l.setText("Draw!");
-			GUIGame.gameOver(isRunning, turn, board);
+			((GUIGame)getParent()).gameOver(isRunning, turn, board);
 			return;
 		}
 		if (!isRunning) {
 			l.setText((!turn ? "Red" : "Yellow") + " Won!");
-			GUIGame.gameOver(isRunning, turn, board);
+			((GUIGame)getParent()).gameOver(isRunning, turn, board);
 		}
 		else {
 			l.setText((turn ? "Red" : "Yellow") + "'s Turn" );
@@ -325,8 +340,11 @@ class GUIGameGrid extends JPanel{
 	private int turnCountLast = 0;
 	private Board board;
 	private boolean player;
+	private GUIGameDetails parent;
 
 	  GUIGameGrid(Board board){
+	  	//parent = (GUIGame) getParent();
+	  	//System.out.println(parent.getName());
 		this.board = board;
 	    buttons = new JButton[7];
 	    for (int i = 0; i < buttons.length; i++){
@@ -350,7 +368,7 @@ class GUIGameGrid extends JPanel{
 					board.theySayChildrenAreTheChickenOfTheOrphanarium();
 					player = !player;
 					updateBoard();
-					GUIGameDetails.updateLabel(board.isRunning(), player,board);
+					((GUIGame) getParent()).updateLabel(board.isRunning(), player,board);
 				}
 	          }
 
@@ -404,7 +422,7 @@ class GUIGameGrid extends JPanel{
 	  public void reset(){
 	  	player = false;
 	  	board.reset();
-	  	GUIGameDetails.updateLabel(board.isRunning(), player,board);
+		  ((GUIGame) getParent()).updateLabel(board.isRunning(), player,board);
 	  	updateBoard();
 	  }
 
