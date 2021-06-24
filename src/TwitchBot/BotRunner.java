@@ -5,6 +5,8 @@ import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 import src.JsonDeserialization.JsonManager;
 import src.JsonDeserialization.SettingsSettings;
+import src.TerminalConnect4.Board;
+import src.gui.GUIGameGrid;
 
 
 public class BotRunner extends Thread {
@@ -15,6 +17,7 @@ public class BotRunner extends Thread {
     public static String USER = "";
     private static int CollectionTime;
     private static boolean ChatWait;
+    private TwitchBot bot;
 
     public BotRunner(){
         try {
@@ -29,7 +32,7 @@ public class BotRunner extends Thread {
     }
 
     public void run() {
-            TwitchBot bot = new TwitchBot(USER, CollectionTime, ChatWait);
+             bot = new TwitchBot(USER, CollectionTime, ChatWait);
             bot.setVerbose(true);
             try {
                 bot.connect(ADDRESS, PORT, OAUTH);
@@ -42,9 +45,23 @@ public class BotRunner extends Thread {
             bot.sendMessage("#" + USER, "Twitch plays Connect 4 is now active");
 
     }
+    public void dispose(){
+        bot.dispose();
+        bot = null;
+    }
+
+    public boolean checkInvalid(){
+        return bot.isInvalid;
+    }
 
 
     public void empty(){
-        //Use this function
+        bot.empty();
+    }
+    public void giveBoard(Board b){
+        bot.giveBoard(b);
+    }
+    public void giveGUI(GUIGameGrid g){
+        bot.giveGUI(g);
     }
 }

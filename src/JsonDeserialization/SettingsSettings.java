@@ -11,7 +11,7 @@ public class SettingsSettings {
     }
     public String Username;
     public String OAuth;
-    public String WaitTime;
-    public boolean HideUsername;
-    public boolean ChatWait;
+    public String WaitTime = "15";
+    public boolean HideUsername = false;
+    public boolean ChatWait = true;
 }

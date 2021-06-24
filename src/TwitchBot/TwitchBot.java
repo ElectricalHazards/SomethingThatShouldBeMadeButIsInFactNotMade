@@ -5,11 +5,16 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+import src.TerminalConnect4.Board;
 import src.TwitchBot.PircBot;
+import src.gui.GUIGameGrid;
 
 public class TwitchBot extends PircBot {
 
     private final String requestedNick;
+
+
+    public boolean isInvalid = false;
 
     private String realNick;
     private String realServer;
@@ -19,6 +24,8 @@ public class TwitchBot extends PircBot {
     private int CollectionTime;
     private boolean WaitForConnect;
     private boolean isWaitingForMessage;
+    private Board board;
+    private GUIGameGrid guiGameGrid;
 
     public TwitchBot(String nick, int connectionTime, boolean waitColledt) {
         this.requestedNick = nick;
@@ -54,6 +61,10 @@ public class TwitchBot extends PircBot {
                 System.out.println("realServer: " + this.realServer);
                 System.out.println("realNick: " + this.realNick);
             }
+        }
+        if(line.contains(":tmi.twitch.tv NOTICE * :Improperly formatted auth")||line.contains(":tmi.twitch.tv NOTICE * :Invalid NICK")||line.contains(":tmi.twitch.tv NOTICE * :Login authentication failed")){
+            isInvalid = true;
+            this.disconnect();
         }
     }
 
@@ -101,6 +112,7 @@ public class TwitchBot extends PircBot {
 
     public void empty(){
         if(WaitForConnect){
+            sendMessage("#"+realNick,"Waiting for valid vote to start collecting.");
             Thread t1 = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -155,6 +167,8 @@ public class TwitchBot extends PircBot {
             return;
         }
         sendMessage("#"+realNick, x+" wins with "+y+" votes.");
+        board.dropthechild(2,x - 1);
+        guiGameGrid.afterBot();
     }
     public int stopCollectingMessages(){
         isCollectingMessages = false;
@@ -186,5 +200,12 @@ public class TwitchBot extends PircBot {
     }
     public static boolean isNumeric(String str) {
         return str != null && str.matches("[-+]?\\d*\\.?\\d+");
+    }
+
+    public void giveBoard(Board b){
+        this.board = b;
+    }
+    public void giveGUI(GUIGameGrid g){
+        this.guiGameGrid = g;
     }
 }
