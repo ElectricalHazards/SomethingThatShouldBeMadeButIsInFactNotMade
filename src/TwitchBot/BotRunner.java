@@ -46,6 +46,7 @@ public class BotRunner extends Thread {
 
     }
     public void dispose(){
+        bot.disconnect();
         bot.dispose();
         bot = null;
     }

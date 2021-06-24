@@ -1,9 +1,12 @@
 package src.gui;
 
 import src.GUI;
+import src.TwitchBot.BotRunner;
 import src.gui.GUIGameGrid;
 import src.JsonDeserialization.JsonManager;
 import src.JsonDeserialization.SettingsSettings;
+
+import src.gui.GUIGameGrid;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +19,7 @@ public class SettingsMenu extends JPanel {
     private JLabel chNameL, oauthTokL, timeL;
     private JTextField timeCollecting;
     private JPasswordField chName, oauthTok;
-    private JButton b, back;
+    private JButton b, back, t;
     private JCheckBox chNameCB, oauthTokCB, waitToCollect;
     private boolean userClicked, waitClicked;
     //Wait untill valid answer is sent to start collecting answers button
@@ -40,8 +43,9 @@ public class SettingsMenu extends JPanel {
         oauthTokCB = new JCheckBox("Show Text");
         b = new JButton("Get Oauth Token");
         back = new JButton("Back To Menu");
+        t = new JButton("Test Bot Connection");
         waitToCollect = new JCheckBox("Start Timer After First Valid Chat Response Instead Of After Streamer's Move");
-        timeL = new JLabel("Time spent waiting on chat to respond (Seconds):");
+        timeL = new JLabel("Time spent collecting turn votes from chat: (Seconds)");
         timeCollecting = new JTextField(15);
         try {
             SettingsSettings settings = new JsonManager().readJSON("settings.json");
@@ -114,6 +118,28 @@ public class SettingsMenu extends JPanel {
                 }
             }
         });
+        t.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JsonManager jsonManager = new JsonManager();
+                try {
+                    jsonManager.writeJSON(new SettingsSettings(new String(chName.getPassword()), userClicked, new String(oauthTok.getPassword()), timeCollecting.getText(), waitClicked), "settings.json");
+                } catch (Exception j) {
+                    j.printStackTrace();
+                }
+                GUIGameGrid.botRunner = new BotRunner();
+                GUIGameGrid.botRunner.run();
+                if(!GUIGameGrid.botRunner.checkInvalid()){
+                    t.setBackground(Color.green);
+                    GUIGameGrid.botRunner.dispose();
+                    GUIGameGrid.botRunner = null;
+                }
+                else{
+                    GUIGameGrid.botRunner.dispose();
+                    GUIGameGrid.botRunner = null;
+                    t.setBackground(Color.red);
+                }
+            }
+        });
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JsonManager jsonManager = new JsonManager();
@@ -122,6 +148,11 @@ public class SettingsMenu extends JPanel {
                 } catch (Exception j) {
                     j.printStackTrace();
                 }
+                if(GUIGameGrid.botRunner!=null) {
+                    GUIGameGrid.botRunner.dispose();
+                    GUIGameGrid.botRunner = null;
+                }
+                t.setBackground(back.getBackground());
                 GUIGameGrid.isTwitchConnected = false;
                 GUI.backToMenu();
             }
@@ -134,6 +165,7 @@ public class SettingsMenu extends JPanel {
         add(oauthTok);
         add(oauthTokCB);
         add(b);
+        add(t);
         add(back);
         add(timeL);
         add(timeCollecting);
