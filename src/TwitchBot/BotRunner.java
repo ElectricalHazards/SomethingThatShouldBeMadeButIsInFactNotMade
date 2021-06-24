@@ -29,7 +29,7 @@ public class BotRunner extends Thread {
     }
 
     public void run() {
-            TwitchBot bot = new TwitchBot(USER);
+            TwitchBot bot = new TwitchBot(USER, CollectionTime, ChatWait);
             bot.setVerbose(true);
             try {
                 bot.connect(ADDRESS, PORT, OAUTH);

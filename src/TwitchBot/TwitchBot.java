@@ -16,9 +16,14 @@ public class TwitchBot extends PircBot {
 
     private HashMap<Integer,Integer> CollectedVotes= new HashMap<Integer, Integer>();
     private boolean isCollectingMessages = false;
+    private int CollectionTime;
+    private boolean WaitForConnect;
+    private boolean isWaitingForMessage;
 
-    public TwitchBot(String nick) {
+    public TwitchBot(String nick, int connectionTime, boolean waitColledt) {
         this.requestedNick = nick;
+        this.CollectionTime = connectionTime;
+        this.WaitForConnect = waitColledt;
 
         setName(this.requestedNick);
         setLogin(this.requestedNick);
@@ -74,43 +79,110 @@ public class TwitchBot extends PircBot {
                 }
             }
         }
+        else if(isWaitingForMessage){
+            if(isNumeric(message.toLowerCase(Locale.ROOT))){
+                int vote = Integer.parseInt(message.toLowerCase(Locale.ROOT));
+                if(vote<=7&&vote>=1){
+                    if (CollectedVotes.containsKey(vote)) {
+                        CollectedVotes.put(vote, CollectedVotes.get(vote) + 1);
+                    } else {
+                        CollectedVotes.put(vote, 1);
+                    }
+                    isWaitingForMessage = false;
+                }
+            }
+        }
+        else{
+            if(message.equalsIgnoreCase("s")){
+                empty();
+            }
+        }
     }
 
     public void empty(){
-        //Use this function
+        if(WaitForConnect){
+            Thread t1 = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    isWaitingForMessage = true;
+                    while (isWaitingForMessage){
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    startCollectingMessages();
+                    try {
+                        Thread.sleep(CollectionTime*1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    stopCollecting();
+                }
+            });
+            t1.start();
+        }
+        else {
+            Thread t1 = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    startCollectingMessages();
+                    try {
+                        Thread.sleep(CollectionTime*1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    stopCollecting();
+                }
+            });
+            t1.start();
+        }
     }
 
 
     public void startCollectingMessages(){
-        CollectedVotes.clear();
         isCollectingMessages = true;
-        sendMessage("#"+realNick,"Poggie");
+        sendMessage("#"+realNick,"Collecting");
     }
     public void stopCollecting(){
         int x = stopCollectingMessages();
         int y = stopCollectingMessages(true);
+        CollectedVotes.clear();
+        if(x==-1||y==-1){
+            sendMessage("#"+realNick, "Error collecting messages, please try again");
+            empty();
+            return;
+        }
         sendMessage("#"+realNick, x+" wins with "+y+" votes.");
     }
     public int stopCollectingMessages(){
         isCollectingMessages = false;
         int max = -1;
+        int maxi = -1;
         System.out.println(CollectedVotes);
-        for(int i = 0; i < CollectedVotes.keySet().size(); i++){
-            if(CollectedVotes.keySet().stream().toList().get(i)>max){
-                max = i;
+        for(int i = 0; i < CollectedVotes.values().size(); i++){
+            if(CollectedVotes.values().stream().toList().get(i)>max){
+                max = CollectedVotes.values().stream().toList().get(i);
+                maxi = i;
             }
         }
-        return max;
+        return CollectedVotes.keySet().stream().toList().get(maxi);
     }
     public int stopCollectingMessages(boolean isSpecial){
         isCollectingMessages = false;
         int max = -1;
-        for(int i = 0; i < CollectedVotes.keySet().size(); i++){
-            if(CollectedVotes.keySet().stream().toList().get(i)>max){
-                max = i;
+        int maxi = -1;
+        for(int i = 0; i < CollectedVotes.values().size(); i++){
+            if(CollectedVotes.values().stream().toList().get(i)>max){
+                max = CollectedVotes.values().stream().toList().get(i);
+                maxi = i;
             }
         }
-        return CollectedVotes.values().stream().toList().get(max - 1);
+        if(max == -1){
+            return -1;
+        }
+        return CollectedVotes.values().stream().toList().get(maxi);
     }
     public static boolean isNumeric(String str) {
         return str != null && str.matches("[-+]?\\d*\\.?\\d+");
