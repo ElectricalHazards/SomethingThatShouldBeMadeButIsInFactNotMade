@@ -73,25 +73,23 @@ public class TwitchBot extends PircBot {
                     }
                 }
             }
-            else{
-                if(message.equalsIgnoreCase("s")){
-                    int x = stopCollectingMessages();
-                    int y = stopCollectingMessages(true);
-                    sendMessage(channel, x+" wins with "+y+" votes.");
-                }
-            }
-        }
-        else{
-            if(message.equalsIgnoreCase("c")){
-                startCollectingMessages();
-                sendMessage(channel,"Voting is now open!");
-            }
         }
     }
+
+    public void empty(){
+
+    }
+
 
     public void startCollectingMessages(){
         CollectedVotes.clear();
         isCollectingMessages = true;
+        sendMessage("#"+realNick,"Poggie");
+    }
+    public void stopCollecting(){
+        int x = stopCollectingMessages();
+        int y = stopCollectingMessages(true);
+        sendMessage("#"+realNick, x+" wins with "+y+" votes.");
     }
     public int stopCollectingMessages(){
         isCollectingMessages = false;

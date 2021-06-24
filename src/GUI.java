@@ -109,7 +109,7 @@ class SettingsMenu extends JPanel{
 		g = new JButton("ConnectBot(DEBUG)");
 		back = new JButton("Back To Menu");
 		waitToCollect = new JCheckBox("Start Timer After First Valid Chat Response Instead Of After Streamer's Move");
-		timeL = new JLabel("Time spent waiting on chat to respond");
+		timeL = new JLabel("Time spent waiting on chat to respond (Seconds):");
 		timeCollecting = new JTextField(15);
 		timeCollecting.setText("0");
 		try {
@@ -124,6 +124,7 @@ class SettingsMenu extends JPanel{
 			if(settings.HideUsername){
 				chNameCB.doClick();
 				userClicked = true;
+				chName.setEchoChar((char) 0);
 			}
 		}catch (Exception e){e.printStackTrace();}
 
