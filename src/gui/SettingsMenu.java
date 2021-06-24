@@ -120,24 +120,33 @@ public class SettingsMenu extends JPanel {
         });
         t.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JsonManager jsonManager = new JsonManager();
-                try {
-                    jsonManager.writeJSON(new SettingsSettings(new String(chName.getPassword()), userClicked, new String(oauthTok.getPassword()), timeCollecting.getText(), waitClicked), "settings.json");
-                } catch (Exception j) {
-                    j.printStackTrace();
-                }
-                GUIGameGrid.botRunner = new BotRunner();
-                GUIGameGrid.botRunner.run();
-                if(!GUIGameGrid.botRunner.checkInvalid()){
-                    t.setBackground(Color.green);
-                    GUIGameGrid.botRunner.dispose();
-                    GUIGameGrid.botRunner = null;
-                }
-                else{
-                    GUIGameGrid.botRunner.dispose();
-                    GUIGameGrid.botRunner = null;
-                    t.setBackground(Color.red);
-                }
+                t.setText("Testing connection...");
+                Thread t1 = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JsonManager jsonManager = new JsonManager();
+                        try {
+                            jsonManager.writeJSON(new SettingsSettings(new String(chName.getPassword()), userClicked, new String(oauthTok.getPassword()), timeCollecting.getText(), waitClicked), "settings.json");
+                        } catch (Exception j) {
+                            j.printStackTrace();
+                        }
+                        GUIGameGrid.botRunner = new BotRunner();
+                        GUIGameGrid.botRunner.run();
+                        if(!GUIGameGrid.botRunner.checkInvalid()){
+                            t.setText("Connection successful!");
+                            t.setBackground(Color.green);
+                            GUIGameGrid.botRunner.dispose();
+                            GUIGameGrid.botRunner = null;
+                        }
+                        else{
+                            t.setText("Error connecting");
+                            GUIGameGrid.botRunner.dispose();
+                            GUIGameGrid.botRunner = null;
+                            t.setBackground(Color.red);
+                        }
+                    }
+                });
+                t1.start();
             }
         });
         back.addActionListener(new ActionListener() {
@@ -152,6 +161,7 @@ public class SettingsMenu extends JPanel {
                     GUIGameGrid.botRunner.dispose();
                     GUIGameGrid.botRunner = null;
                 }
+                t.setText("Test Bot Connection");
                 t.setBackground(back.getBackground());
                 GUIGameGrid.isTwitchConnected = false;
                 GUI.backToMenu();
