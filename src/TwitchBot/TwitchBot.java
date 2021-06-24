@@ -77,7 +77,7 @@ public class TwitchBot extends PircBot {
     }
 
     public void empty(){
-
+        //Use this function
     }
 
 
