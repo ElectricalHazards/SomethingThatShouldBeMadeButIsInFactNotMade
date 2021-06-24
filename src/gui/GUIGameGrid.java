@@ -30,7 +30,7 @@ public class GUIGameGrid extends JPanel {
             this.board = board;
             buttons = new JButton[7];
             for (int i = 0; i < buttons.length; i++) {
-                ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("arrow.png")); // load the image to a imageIcon
+                ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("arrow"+(i+1)+".png")); // load the image to a imageIcon
                 Image image = imageIcon.getImage(); // transform it
                 Image newimg = image.getScaledInstance(55, 55, Image.SCALE_SMOOTH); // scale it the smooth way
                 ImageIcon newImageIcon = new ImageIcon(newimg);
