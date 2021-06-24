@@ -261,6 +261,12 @@ public class Board{
 	  isRunning = jeff;
   }
 
+  public void reset(){
+    board = new int[6][7];
+    isRunning = true;
+    isDraw = false;
+  }
+
   public String toString(){
     String[] conversions = {"â�ºï¸�","ðŸ”´","ðŸŸ¡"};
     String output = " ";

@@ -240,10 +240,18 @@ class GUIGame extends JPanel{
 		toMenu.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				dialog.setVisible(false);
+				g.reset();
 				GUI.backToMenu();
 			}
 		});
 		again = new JButton("New Game");
+		again.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				dialog.setVisible(false);
+				g.reset();
+			}
+		});
+
 
 		dialog.add(dialogL);
 		dialog.add(toMenu);
@@ -254,6 +262,7 @@ class GUIGame extends JPanel{
 			@Override
 			public void windowClosing(WindowEvent e){
 				dialog.setVisible(false);
+				g.reset();
 				GUI.backToMenu();				
 			}
 		});
@@ -271,9 +280,8 @@ class GUIGame extends JPanel{
 	public static void gameOver(boolean isRunning, boolean turn, Board board){
 		if(board.isDraw){
 			dialogL.setText("Draw!");
-			return;
 		}
-		if (!isRunning) {
+		else if (!isRunning) {
 			dialogL.setText((!turn ? "Red" : "Yellow") + " Won!");
 		}
 		else {
@@ -391,6 +399,14 @@ class GUIGameGrid extends JPanel{
 	      }
 	    }
 	  }
+
+	  public void reset(){
+	  	player = false;
+	  	board.reset();
+	  	GUIGameDetails.updateLabel(board.isRunning(), player,board);
+	  	updateBoard();
+	  }
+
 	  public void end(){
 	      //The use of !player is because the check win function runs at the very end of the turn and so pressing the button has already changed it to the next player (the loser) 's turn'
 	      board.setIsRunning(false);
