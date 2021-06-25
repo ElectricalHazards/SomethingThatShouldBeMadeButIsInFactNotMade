@@ -9,3 +9,4 @@ src/GUI.class
 *.class
 /out/production/SomethingThatShouldBeMadeButIsInFactNotMade/.metadata/.plugins/org.eclipse.core.resources/.projects/SomethingThatShouldBeMadeButIsInFactNotMade1/org.eclipse.egit.core/GitProjectData.properties
 /nullsettings.json
+/out/production/SomethingThatShouldBeMadeButIsInFactNotMade/nullsettings.json
