@@ -22,10 +22,10 @@ class GUIGameDetails extends JPanel {
             return;
         }
         if (!isRunning) {
-            l.setText((!turn ? (isTwitchGame ? "Twitch" : "Red") : "Yellow") + " Won!");
+            l.setText((!turn ? (isTwitchGame ? "Twitch" : "Red") : (isTwitchGame ? "Streamer" : "Yellow")) + " Won!");
             ((GUIGame) getParent()).gameOver(isRunning, turn, board);
         } else {
-            l.setText((turn ? (isTwitchGame ? "Twitch" : "Red") : "Yellow") + "'s Turn");
+            l.setText((turn ? (isTwitchGame ? "Twitch" : "Red") : (isTwitchGame ? "Streamer" : "Yellow")) + "'s Turn");
         }
     }
 }

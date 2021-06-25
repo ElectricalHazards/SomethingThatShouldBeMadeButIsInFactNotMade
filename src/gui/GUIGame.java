@@ -78,9 +78,9 @@ public class GUIGame extends JPanel {
         if (board.isDraw) {
             dialogL.setText("Draw!");
         } else if (!isRunning) {
-            dialogL.setText((!turn ? (isTwitchGame ? "Twitch" : "Red") : "Yellow") + " Won!");
+            dialogL.setText((!turn ? (isTwitchGame ? "Twitch" : "Red") : (isTwitchGame ? "Streamer" : "Yellow")) + " Won!");
         } else {
-            dialogL.setText((turn ? (isTwitchGame ? "Twitch" : "Red") : "Yellow") + "'s Turn");
+            dialogL.setText((turn ? (isTwitchGame ? "Twitch" : "Red") : (isTwitchGame ? "Streamer" : "Yellow")) + "'s Turn");
         }
         dialog.setVisible(true);
     }
