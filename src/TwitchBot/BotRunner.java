@@ -18,10 +18,11 @@ public class BotRunner extends Thread {
     private static int CollectionTime;
     private static boolean ChatWait;
     private TwitchBot bot;
+    private SettingsSettings settings;
 
     public BotRunner(){
         try {
-            SettingsSettings settings = new JsonManager().readJSON("settings.json");
+            settings = new JsonManager().readJSON("settings.json");
             this.USER = settings.Username;
             this.OAUTH = settings.OAuth;
             this.CollectionTime = Integer.parseInt(settings.WaitTime);
@@ -52,7 +53,7 @@ public class BotRunner extends Thread {
     }
 
     public boolean checkInvalid(){
-        return bot.isInvalid;
+        return bot.isInvalid || !TwitchBot.isNumeric(settings.WaitTime);
     }
 
 
