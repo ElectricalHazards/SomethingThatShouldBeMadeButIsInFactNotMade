@@ -5,10 +5,7 @@ import src.TerminalConnect4.Board;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 public class GUIGame extends JPanel {
     private GUIGameDetails d;
@@ -18,6 +15,7 @@ public class GUIGame extends JPanel {
     private JLabel dialogL;
     private JButton toMenu, again;
     private boolean isTwitchGame;
+    private AbstractAction backToMenu, reset, escape;
 
     public GUIGame() {
         this(false);
@@ -25,6 +23,35 @@ public class GUIGame extends JPanel {
 
     public GUIGame(boolean isTwitchGame) {
         super(new BorderLayout());
+
+
+        backToMenu = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.setVisible(false);
+                g.reset();
+                GUI.backToMenu();
+            }
+        };
+        reset = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.setVisible(false);
+                g.reset();
+            }
+        };
+        escape = new AbstractAction(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(! board.isRunning()) return;
+                if (dialog.isVisible()){
+                    dialogIsVisible(false);
+                    return;
+                }
+                dialogL.setText("Paused");
+                dialogIsVisible(true);
+            }
+        };
 
         this.isTwitchGame = isTwitchGame;
         this.board = new Board();
@@ -35,20 +62,12 @@ public class GUIGame extends JPanel {
         dialogL = new JLabel();
         dialogL.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         toMenu = new JButton("Exit To Main Menu");
-        toMenu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dialog.setVisible(false);
-                g.reset();
-                GUI.backToMenu();
-            }
-        });
+        toMenu.addActionListener(backToMenu);
         again = new JButton("New Game");
-        again.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dialog.setVisible(false);
-                g.reset();
-            }
-        });
+        again.addActionListener(reset);
+
+
+
 
 
         dialog.add(dialogL);
@@ -59,11 +78,15 @@ public class GUIGame extends JPanel {
         dialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                if(board.isRunning()){
+                    return;
+                }
                 dialog.setVisible(false);
                 g.reset();
                 GUI.backToMenu();
             }
         });
+
         dialog.setLayout(new GridLayout(7, 1));
         dialog.setSize(300, 300);
 
@@ -71,6 +94,8 @@ public class GUIGame extends JPanel {
         add(d, BorderLayout.NORTH);
         add(g, BorderLayout.CENTER);
 
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"),"escape");
+        getActionMap().put("escape", escape);
 
     }
 
@@ -82,11 +107,31 @@ public class GUIGame extends JPanel {
         } else {
             dialogL.setText((turn ? (isTwitchGame ? "Twitch" : "Red") : (isTwitchGame ? "Streamer" : "Yellow")) + "'s Turn");
         }
-        dialog.setVisible(true);
+        dialogIsVisible(true);
     }
 
     public void updateLabel(boolean isRunning, boolean turn, Board board) {
         d.updateLabel(isRunning, turn, board);
+    }
+
+    public void dialogIsVisible(boolean isVisible){
+        if (isVisible()){
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            Dimension parentSize = getSize();
+            Dimension childSize = dialog.getSize();
+            Point parentLocationOnScreen = getLocationOnScreen();
+            int x = (parentSize.width - childSize.width) / 2;
+            int y = (parentSize.height - childSize.height) / 2;
+            x += parentLocationOnScreen.x;
+            y += parentLocationOnScreen.y;
+            dialog.setLocation(x,y);
+
+            dialog.setVisible(true);
+
+        }
+        else{
+            dialog.setVisible(false);
+        }
     }
 
 }
