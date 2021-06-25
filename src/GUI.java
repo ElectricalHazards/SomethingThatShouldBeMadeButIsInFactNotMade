@@ -16,6 +16,7 @@ public class GUI extends JFrame{
 	private static CardLayout cards = new CardLayout();
 	private JButton goToGame,goToTwitchGame,settings;
 	private JLabel menuLabel;
+	private Font menuLabelFont;
 	private SettingsMenu settingsMenu;
 	private GUIGameGrid GuiGameGrid;
 	private FixAuth fixAuth;
@@ -26,8 +27,12 @@ public class GUI extends JFrame{
 		container.setLayout(cards);
 		
 		menu = new JPanel();
-		menu.setLayout(new BoxLayout(menu,BoxLayout.Y_AXIS));
+		menu.setLayout(new GridLayout(7,1));
+		menuLabelFont = new Font(Font.SANS_SERIF,Font.BOLD,20);
 		menuLabel = new JLabel("Welcome To Connect 4");
+		menuLabel.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+		menuLabel.setFont(menuLabelFont);
+
 		menu.add(menuLabel);
 		goToGame = new JButton("Play Connect 4");
 		menu.add(goToGame);
@@ -37,14 +42,6 @@ public class GUI extends JFrame{
 		menu.add(settings);
 
 
-		menuLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		menuLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
-		goToGame.setAlignmentX(Component.CENTER_ALIGNMENT);
-		goToGame.setAlignmentY(Component.CENTER_ALIGNMENT);
-		goToTwitchGame.setAlignmentX(Component.CENTER_ALIGNMENT);
-		goToTwitchGame.setAlignmentY(Component.CENTER_ALIGNMENT);
-		settings.setAlignmentX(Component.CENTER_ALIGNMENT);
-		settings.setAlignmentY(Component.CENTER_ALIGNMENT);
 
 		container.add(menu, "menu");
 		game = new GUIGame();
@@ -69,7 +66,7 @@ public class GUI extends JFrame{
 					GuiGameGrid.botRunner.run();
 					if(!GuiGameGrid.botRunner.checkInvalid()){
 						GuiGameGrid.isTwitchConnected = true;
-						setTitle("Connect 4 For Twitch");
+						//setTitle("Connect 4 For Twitch");
 						cards.show(container,"twitchGame");
 					}
 					else{

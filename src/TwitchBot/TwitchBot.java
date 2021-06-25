@@ -196,6 +196,9 @@ public class TwitchBot extends PircBot {
                 maxi = i;
             }
         }
+        if(maxi == -1){
+            return -1;
+        }
         return CollectedVotes.keySet().stream().toList().get(maxi);
     }
     public int stopCollectingMessages(boolean isSpecial){
