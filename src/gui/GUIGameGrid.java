@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class GUIGameGrid extends JPanel {
     private JButton[] buttons;
@@ -24,10 +25,84 @@ public class GUIGameGrid extends JPanel {
     public GUIGameGrid self;
 
     GUIGameGrid(Board board, boolean isTwitchGame) {
+        AbstractAction aa = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = 0;
+                for (int whatEver = 0; whatEver < buttons.length; whatEver++) {
+                    if (e.getSource() == buttons[whatEver]) {
+                        index = whatEver;
+                        break;
+                    }
+                }
+                if (board.isRunning()) {
+                    if (board.dropthechild((player ? 1 : 2), index)) {
+                        board.theySayChildrenAreTheChickenOfTheOrphanarium();
+                        player = !player;
+                        updateBoard();
+                        ((GUIGame) getParent()).updateLabel(board.isRunning(), player, board);
+                    }
+                }
+            }
+        };
+        AbstractAction twitchAA = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!doesHaveMe){
+                    botRunner.giveGUI(self);
+                    botRunner.giveBoard(board);
+                    doesHaveMe = true;
+                }
+                int index = 0;
+                for (int whatEver = 0; whatEver < buttons.length; whatEver++) {
+                    if (e.getSource() == buttons[whatEver]) {
+                        index = whatEver;
+                        break;
+                    }
+                }
+                if (board.isRunning()) {
+                    if (!player) {
+                        if (board.dropthechild(1, index)) {
+                            board.theySayChildrenAreTheChickenOfTheOrphanarium();
+                            player = !player;
+                            updateBoard();
+                            ((GUIGame) getParent()).updateLabel(board.isRunning(), player, board);
+                            if(board.isRunning()){
+                                botRunner.empty();
+                            }
+                        }
+                    } else if (player) {
+                                /*if (board.dropthechild(2, index)) {
+                                    board.theySayChildrenAreTheChickenOfTheOrphanarium();
+                                    player = !player;
+                                    updateBoard();
+                                    ((GUIGame) getParent()).updateLabel(board.isRunning(), player, board);
+                                }*/
+                    }
+                }
+            }
+        };
         if (!isTwitchGame) {
             //parent = (GUIGame) getParent();
             // System.out.println(parent.getName());
             this.board = board;
+            buttons = new JButton[7];
+
+            for (int i = 0; i < buttons.length; i++) {
+                ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("arrow"+(i+1)+".png")); // load the image to a imageIcon
+                Image image = imageIcon.getImage(); // transform it
+                Image newimg = image.getScaledInstance(55, 55, Image.SCALE_SMOOTH); // scale it the smooth way
+                ImageIcon newImageIcon = new ImageIcon(newimg);
+                buttons[i] = new JButton(new StretchIcon(newimg));
+                //buttons[i].setPreferredSize(new Dimension(newImageIcon.getIconWidth(),newImageIcon.getIconHeight()));
+                buttons[i].addActionListener(aa);
+                buttons[i].getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(49 + i,0),""+i);
+                buttons[i].getActionMap().put(""+i,aa);
+
+            }
+        } else {
+            this.board = board;
+            self = this;
             buttons = new JButton[7];
             for (int i = 0; i < buttons.length; i++) {
                 ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("arrow"+(i+1)+".png")); // load the image to a imageIcon
@@ -36,73 +111,9 @@ public class GUIGameGrid extends JPanel {
                 ImageIcon newImageIcon = new ImageIcon(newimg);
                 buttons[i] = new JButton(new StretchIcon(newimg));
                 //buttons[i].setPreferredSize(new Dimension(newImageIcon.getIconWidth(),newImageIcon.getIconHeight()));
-                buttons[i].addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        int index = 0;
-                        for (int whatEver = 0; whatEver < buttons.length; whatEver++) {
-                            if (e.getSource() == buttons[whatEver]) {
-                                index = whatEver;
-                                break;
-                            }
-                        }
-                        if (board.isRunning()) {
-                            if (board.dropthechild((player ? 1 : 2), index)) {
-                                board.theySayChildrenAreTheChickenOfTheOrphanarium();
-                                player = !player;
-                                updateBoard();
-                                ((GUIGame) getParent()).updateLabel(board.isRunning(), player, board);
-                            }
-                        }
-                    }
-                });
-            }
-        } else {
-            this.board = board;
-            self = this;
-            buttons = new JButton[7];
-            for (int i = 0; i < buttons.length; i++) {
-                ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("arrow.png")); // load the image to a imageIcon
-                Image image = imageIcon.getImage(); // transform it
-                Image newimg = image.getScaledInstance(55, 55, Image.SCALE_SMOOTH); // scale it the smooth way
-                ImageIcon newImageIcon = new ImageIcon(newimg);
-                buttons[i] = new JButton(new StretchIcon(newimg));
-                //buttons[i].setPreferredSize(new Dimension(newImageIcon.getIconWidth(),newImageIcon.getIconHeight()));
-                buttons[i].addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        if(!doesHaveMe){
-                            botRunner.giveGUI(self);
-                            botRunner.giveBoard(board);
-                            doesHaveMe = true;
-                        }
-                        int index = 0;
-                        for (int whatEver = 0; whatEver < buttons.length; whatEver++) {
-                            if (e.getSource() == buttons[whatEver]) {
-                                index = whatEver;
-                                break;
-                            }
-                        }
-                        if (board.isRunning()) {
-                            if (!player) {
-                                if (board.dropthechild(1, index)) {
-                                    board.theySayChildrenAreTheChickenOfTheOrphanarium();
-                                    player = !player;
-                                    updateBoard();
-                                    ((GUIGame) getParent()).updateLabel(board.isRunning(), player, board);
-                                    if(board.isRunning()){
-                                        botRunner.empty();
-                                    }
-                                }
-                            } else if (player) {
-                                /*if (board.dropthechild(2, index)) {
-                                    board.theySayChildrenAreTheChickenOfTheOrphanarium();
-                                    player = !player;
-                                    updateBoard();
-                                    ((GUIGame) getParent()).updateLabel(board.isRunning(), player, board);
-                                }*/
-                            }
-                        }
-                    }
-                });
+                buttons[i].addActionListener(twitchAA);
+                buttons[i].getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(49 + i,0),""+i);
+                buttons[i].getActionMap().put(""+i,twitchAA);
             }
         }
 
