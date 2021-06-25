@@ -83,7 +83,7 @@ public class GUIGameGrid extends JPanel {
                         }
                         if (board.isRunning()) {
                             if (!player) {
-                                if (board.dropthechild(1, index)) {
+                                if (board.dropthechild(2, index)) {
                                     board.theySayChildrenAreTheChickenOfTheOrphanarium();
                                     player = !player;
                                     updateBoard();

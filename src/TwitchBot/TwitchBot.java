@@ -1,9 +1,7 @@
 package src.TwitchBot;
 import org.jibble.pircbot.*;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.StringTokenizer;
+import java.util.*;
 
 import src.TerminalConnect4.Board;
 import src.TwitchBot.PircBot;
@@ -19,7 +17,7 @@ public class TwitchBot extends PircBot {
     private String realNick;
     private String realServer;
 
-    private HashMap<Integer,Integer> CollectedVotes= new HashMap<Integer, Integer>();
+    private HashMap<Integer, ArrayList<String>> CollectedVotes= new HashMap<Integer, ArrayList<String>>();
     private boolean isCollectingMessages = false;
     private int CollectionTime;
     private boolean WaitForConnect;
@@ -83,9 +81,17 @@ public class TwitchBot extends PircBot {
                 int vote = Integer.parseInt(message.toLowerCase(Locale.ROOT));
                 if(vote<=7&&vote>=1){
                     if (CollectedVotes.containsKey(vote)) {
-                        CollectedVotes.put(vote, CollectedVotes.get(vote) + 1);
+                            for(ArrayList<String> i : CollectedVotes.values().stream().toList()){
+                                CollectedVotes.values().stream().toList().get(CollectedVotes.values().stream().toList().indexOf(i)).remove(sender);
+                            }
+                            CollectedVotes.get(vote).add(sender);
                     } else {
-                        CollectedVotes.put(vote, 1);
+                        ArrayList<String> a = new ArrayList<>();
+                        a.add(sender);
+                        for(ArrayList<String> i : CollectedVotes.values().stream().toList()){
+                            CollectedVotes.values().stream().toList().get(CollectedVotes.values().stream().toList().indexOf(i)).remove(sender);
+                        }
+                        CollectedVotes.put(vote, a);
                     }
                 }
             }
@@ -95,9 +101,18 @@ public class TwitchBot extends PircBot {
                 int vote = Integer.parseInt(message.toLowerCase(Locale.ROOT));
                 if(vote<=7&&vote>=1){
                     if (CollectedVotes.containsKey(vote)) {
-                        CollectedVotes.put(vote, CollectedVotes.get(vote) + 1);
+                            for(ArrayList<String> i : CollectedVotes.values().stream().toList()){
+                                CollectedVotes.values().stream().toList().get(CollectedVotes.values().stream().toList().indexOf(i)).remove(sender);
+                            }
+                            CollectedVotes.get(vote).add(sender);
+                        isWaitingForMessage = false;
                     } else {
-                        CollectedVotes.put(vote, 1);
+                        ArrayList<String> a = new ArrayList<>();
+                        a.add(sender);
+                        for(ArrayList<String> i : CollectedVotes.values().stream().toList()){
+                            CollectedVotes.values().stream().toList().get(CollectedVotes.values().stream().toList().indexOf(i)).remove(sender);
+                        }
+                        CollectedVotes.put(vote, a);
                     }
                     isWaitingForMessage = false;
                 }
@@ -167,7 +182,7 @@ public class TwitchBot extends PircBot {
             return;
         }
         sendMessage("#"+realNick, x+" wins with "+y+" votes.");
-        board.dropthechild(2,x - 1);
+        board.dropthechild(1,x - 1);
         guiGameGrid.afterBot();
     }
     public int stopCollectingMessages(){
@@ -176,8 +191,8 @@ public class TwitchBot extends PircBot {
         int maxi = -1;
         System.out.println(CollectedVotes);
         for(int i = 0; i < CollectedVotes.values().size(); i++){
-            if(CollectedVotes.values().stream().toList().get(i)>max){
-                max = CollectedVotes.values().stream().toList().get(i);
+            if(CollectedVotes.values().stream().toList().get(i).size()>max){
+                max = CollectedVotes.values().stream().toList().get(i).size();
                 maxi = i;
             }
         }
@@ -188,15 +203,15 @@ public class TwitchBot extends PircBot {
         int max = -1;
         int maxi = -1;
         for(int i = 0; i < CollectedVotes.values().size(); i++){
-            if(CollectedVotes.values().stream().toList().get(i)>max){
-                max = CollectedVotes.values().stream().toList().get(i);
+            if(CollectedVotes.values().stream().toList().get(i).size()>max){
+                max = CollectedVotes.values().stream().toList().get(i).size();
                 maxi = i;
             }
         }
         if(max == -1){
             return -1;
         }
-        return CollectedVotes.values().stream().toList().get(maxi);
+        return CollectedVotes.values().stream().toList().get(maxi).size();
     }
     public static boolean isNumeric(String str) {
         return str != null && str.matches("[-+]?\\d*\\.?\\d+");
