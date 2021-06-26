@@ -24,6 +24,7 @@ public class TwitchBot extends PircBot {
     private boolean isWaitingForMessage;
     private Board board;
     private GUIGameGrid guiGameGrid;
+    private ArrayList<Integer> one, two;
 
     public TwitchBot(String nick, int connectionTime, boolean waitColledt) {
         this.requestedNick = nick;
@@ -181,6 +182,15 @@ public class TwitchBot extends PircBot {
             empty();
             return;
         }
+        if(one != null || two != null){
+            int index = new Random().nextInt(one.size());
+            x = one.get(index);
+            y = two.get(index);
+            System.out.println(one);
+            System.out.println(two);
+            one = null;
+            two = null;
+        }
         sendMessage("#"+realNick, x+" wins with "+y+" votes.");
         board.dropthechild(1,x - 1);
         guiGameGrid.afterBot();
@@ -194,6 +204,16 @@ public class TwitchBot extends PircBot {
             if(CollectedVotes.values().stream().toList().get(i).size()>max){
                 max = CollectedVotes.values().stream().toList().get(i).size();
                 maxi = i;
+                if(one != null){
+                    one = null;
+                }
+            }
+            else if(CollectedVotes.values().stream().toList().get(i).size()==max){
+                if(one == null){
+                    one = new ArrayList<Integer>();
+                    one.add(CollectedVotes.keySet().stream().toList().get(maxi));
+                }
+                one.add(CollectedVotes.keySet().stream().toList().get(i));
             }
         }
         if(maxi == -1){
@@ -209,6 +229,16 @@ public class TwitchBot extends PircBot {
             if(CollectedVotes.values().stream().toList().get(i).size()>max){
                 max = CollectedVotes.values().stream().toList().get(i).size();
                 maxi = i;
+                if(two != null){
+                    two = null;
+                }
+            }
+            else if(CollectedVotes.values().stream().toList().get(i).size()==max){
+                if(two == null){
+                    two = new ArrayList<Integer>();
+                    two.add(max);
+                }
+                two.add(CollectedVotes.values().stream().toList().get(i).size());
             }
         }
         if(max == -1){
