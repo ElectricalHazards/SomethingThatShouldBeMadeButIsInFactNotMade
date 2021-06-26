@@ -12,6 +12,9 @@ class GUIGameDetails extends JPanel {
     GUIGameDetails(boolean isTwitchGame) {
         this.isTwitchGame = isTwitchGame;
         l = new JLabel("Yellow's Turn");
+        if (isTwitchGame){
+            l.setText("Streamer's Turn");
+        }
         add(l);
     }
 
