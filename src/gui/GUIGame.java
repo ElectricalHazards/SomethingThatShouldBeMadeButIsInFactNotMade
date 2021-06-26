@@ -30,10 +30,11 @@ public class GUIGame extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 dialog.setVisible(false);
                 g.reset();
-                g.isTwitchConnected = false;
                 if (g.isTwitchConnected) {
                     g.botRunner.dispose();
                 }
+                g.isTwitchConnected = false;
+                GUIGameGrid.doesHaveMe = false;
                 GUI.backToMenu();
             }
         };
@@ -87,6 +88,7 @@ public class GUIGame extends JPanel {
                 if (g.isTwitchConnected) {
                     g.botRunner.dispose();
                 }
+                g.isTwitchConnected = false;
                 GUI.backToMenu();
             }
         });
