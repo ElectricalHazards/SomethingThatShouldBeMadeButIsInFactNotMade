@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="jpackage" name="SomethingThatShouldBeMadeButIsInFactNotMade">
+    <output-path>$PROJECT_DIR$/out/artifacts/SomethingThatShouldBeMadeButIsInFactNotMade</output-path>
+    <properties id="jpackage-properties">
+      <options>
+        <option name="version" value="" />
+        <option name="copyright" value="" />
+        <option name="description" value="" />
+        <option name="vendor" value="" />
+        <option name="mainClass" value="src.Main" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="SomethingThatShouldBeMadeButIsInFactNotMade.jar">
+        <element id="module-output" name="SomethingThatShouldBeMadeButIsInFactNotMade" />
+        <element id="extracted-dir" path="$PROJECT_DIR$/pircbot.jar" path-in-jar="/" />
+        <element id="extracted-dir" path="$PROJECT_DIR$/lib/gson-2.8.7.jar" path-in-jar="/" />
+      </element>
+    </root>
+  </artifact>
+</component>
