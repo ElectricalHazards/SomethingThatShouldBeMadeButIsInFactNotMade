@@ -128,7 +128,7 @@ public class TwitchBot extends PircBot {
 
     public void empty(){
         if(WaitForConnect){
-            sendMessage("#"+realNick,"Waiting for valid vote to start collecting.");
+            sendMessage("#"+requestedNick,"Waiting for valid vote to start collecting.");
             Thread t1 = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -171,14 +171,19 @@ public class TwitchBot extends PircBot {
 
     public void startCollectingMessages(){
         isCollectingMessages = true;
-        sendMessage("#"+realNick,"Collecting");
+        String output = "";
+        if (WaitForConnect){
+            output += "First vote collected. ";
+        }
+        output += "Collecting... "+CollectionTime+" seconds remain until votes are finalized.";
+        sendMessage("#" + requestedNick, output);
     }
     public void stopCollecting(){
         int x = stopCollectingMessages();
         int y = stopCollectingMessages(true);
         CollectedVotes.clear();
         if(x==-1||y==-1){
-            sendMessage("#"+realNick, "Error collecting messages, please try again");
+            sendMessage("#"+requestedNick, "Error collecting messages, please try again");
             empty();
             return;
         }
@@ -191,7 +196,7 @@ public class TwitchBot extends PircBot {
             one = null;
             two = null;
         }
-        sendMessage("#"+realNick, x+" wins with "+y+" votes.");
+        sendMessage("#"+requestedNick, x+" wins with "+y+" votes.");
         board.dropthechild(1,x - 1);
         guiGameGrid.afterBot();
     }

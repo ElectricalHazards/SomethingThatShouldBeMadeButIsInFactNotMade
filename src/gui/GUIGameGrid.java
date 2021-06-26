@@ -21,7 +21,7 @@ public class GUIGameGrid extends JPanel {
     private GUIGameDetails parent;
     public static boolean isTwitchConnected = false;
     public static BotRunner botRunner;
-    public boolean doesHaveMe = false;
+    public static boolean doesHaveMe = false;
     public GUIGameGrid self;
 
     GUIGameGrid(Board board, boolean isTwitchGame) {
