@@ -176,4 +176,9 @@ public class GUIGameGrid extends JPanel {
         //The use of !player is because the check win function runs at the very end of the turn and so pressing the button has already changed it to the next player (the loser) 's turn'
         board.setIsRunning(false);
     }
+
+    public boolean isTwitchsTurn(){
+        if (!isTwitchConnected) return false;
+        return player;
+    }
 }

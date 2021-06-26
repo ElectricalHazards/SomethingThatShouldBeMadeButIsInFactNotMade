@@ -44,10 +44,7 @@ public class GUIGame extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e){
                 if(! board.isRunning()) return;
-                if (dialog.isVisible()){
-                    dialogIsVisible(false);
-                    return;
-                }
+                if (g.isTwitchsTurn()) return;
                 dialogL.setText("Paused");
                 dialogIsVisible(true);
             }
