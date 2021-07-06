@@ -197,8 +197,11 @@ public class TwitchBot extends PircBot {
             two = null;
         }
         sendMessage("#"+requestedNick, x+" wins with "+y+" votes.");
-        board.dropthechild(1,x - 1);
-        guiGameGrid.afterBot();
+        if(board.dropthechild(1,x - 1)) guiGameGrid.afterBot();
+        else {
+            sendMessage("#"+requestedNick,"Column already full.");
+            empty();
+        }
     }
     public int stopCollectingMessages(){
         isCollectingMessages = false;
